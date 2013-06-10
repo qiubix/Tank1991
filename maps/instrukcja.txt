@@ -1,0 +1,17 @@
+######### INSTRUKCJA TWORZENIA MAPY ###############
+#
+# Linie rozpoczynajace sie znakiem '#' sa komentarzami i sa ignorowane
+#
+# Linie puste oznaczaja brak elementow w danym rzedzie
+# 
+# Odczytywana linia moze miec dlugosc co najwyzej 20 znakow
+#
+#
+#
+#
+#
+#
+#
+#
+#
+# 
