@@ -209,7 +209,12 @@ public class ScreenManager {
         if(window != null){
             window.dispose();
         }
-        device.setFullScreenWindow(null);
+        try {
+        	device.setFullScreenWindow(null);
+        }
+        catch (Exception ex) {
+        	ex.printStackTrace(System.err);
+        }
     }
     
     

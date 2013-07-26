@@ -16,16 +16,12 @@ import util.Timer;
  */
 public class GameCore {
     
-    /** Model gry */
     private Model model;
     
-    /** Widok gry */
     private View view;
     
-    /** Kontroler gry */
     private Controller controller;
-    
-    
+     
     /**Okresla aktywnosc aplikacji     */
     private boolean isRunning;
     
@@ -46,8 +42,11 @@ public class GameCore {
             init();
             gameLoop();
         }
+        catch (NullPointerException ex) {
+        	ex.printStackTrace(System.err);
+        }
         finally{
-            view.getScreen().restoreScreen();
+        	view.getScreen().restoreScreen();       		
         }
     }
 

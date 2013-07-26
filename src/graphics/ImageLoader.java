@@ -27,12 +27,7 @@ import javax.swing.ImageIcon;
  */
 public class ImageLoader {
 
-    /**
-     * Sciezka dostepu do obrazkow
-     */
-    private static final String IMAGE_DIR = "images\\";
-    
-    
+    private static final String IMAGE_DIR = "images/";  
     
     /**
      * Zaladowanie obrazka
