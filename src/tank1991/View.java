@@ -40,6 +40,7 @@ public class View implements Observer{
      * Zestaw mozliwych trybow wyswietlania
      */
     private static final DisplayMode[] POSSIBLE_MODES = {
+        new DisplayMode(1920, 1080, 32, 0),
         new DisplayMode(1366, 768, 32, 0),
         new DisplayMode(1280, 1024, 32,0),
         new DisplayMode(1280, 720, 32, 0),
@@ -48,8 +49,7 @@ public class View implements Observer{
         new DisplayMode(800, 600, 16, 0),
         new DisplayMode(1280, 1024, 32, 0),
         new DisplayMode(1280, 800, 32, 0),
-        new DisplayMode(1650, 1050, 32, 0),
-        new DisplayMode(1920, 1080, 32, 0)
+        new DisplayMode(1650, 1050, 32, 0)
     };
     
     
