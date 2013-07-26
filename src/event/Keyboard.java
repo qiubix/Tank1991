@@ -31,7 +31,6 @@ public class Keyboard implements KeyListener{
         keyActions.put(keyCode, gameAction);
     }
     
-    
     public void clearMap(GameAction gameAction){
         for(GameAction action : keyActions.values()){
             if(action == gameAction){
@@ -41,9 +40,6 @@ public class Keyboard implements KeyListener{
         
         gameAction.reset();
     }
-    
-    
-    
     
     /**
      * Pobieranie nazwy kodu zdarzenia klawisza
@@ -64,8 +60,6 @@ public class Keyboard implements KeyListener{
         }
     }
     
-    
-    
     /**
      * Zwraca obiekt GameAction przypisany do danego klawisza
      * @param e zdarzenie klawisza
@@ -74,7 +68,6 @@ public class Keyboard implements KeyListener{
     private GameAction getKeyAction(KeyEvent e){
         return keyActions.get(e.getKeyCode());
     }
-    
     
     //<editor-fold defaultstate="collapsed" desc="Obsluga zdarzen klawiszy">
     @Override
@@ -101,6 +94,6 @@ public class Keyboard implements KeyListener{
         }
         //Upewnienie sie, ze zdarzenie nie bedzie dalej obslugiwane
         e.consume();
-    }//</editor-fold>
+    }
 
 }

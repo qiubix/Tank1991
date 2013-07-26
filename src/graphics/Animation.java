@@ -32,7 +32,6 @@ public class Animation extends Graphic{
         this.animationTime = animationTime;
         start();
     }
-    
 
     @Override
     public int getWidth() {

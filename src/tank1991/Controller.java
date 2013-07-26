@@ -26,10 +26,7 @@ public class Controller implements Observer {
     private Keyboard keyboard;
     private GameAction[] actions;
 
-    
-
     private enum Keys {
-
         UP, DOWN, LEFT, RIGHT, PAUSE, EXIT, SHOOT
     }
 
@@ -81,8 +78,6 @@ public class Controller implements Observer {
         return actions[action.ordinal()];
     }
 
-    
-    
     public void getEvents() {
         boolean alive = !model.getLevel().getPlayer().isDead();
         if (getAction(Keys.EXIT).isPressed()) {
