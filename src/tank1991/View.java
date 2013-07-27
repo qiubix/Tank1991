@@ -101,12 +101,19 @@ public class View implements Observer {
     }
 
     private void initPanels() {
-        mainMenu = new MainMenu("main_menu_back_2.jpg", 350, 250);
+        mainMenu = initMainMenu();
         pauseMenu = new PauseMenu("frame3.png", "Paused");
 
         scorePanel = initScorePanel();
 
         contextPanel = new JPanel(new CardLayout());
+    }
+
+    private MainMenu initMainMenu() {
+        int rigidAreaHeight = screen.getHeight()/4;
+        int rigidAreaWidth = screen.getWidth();
+        Dimension dimension = new Dimension(rigidAreaWidth,rigidAreaHeight);
+        return new MainMenu("main_menu_back_1.jpg", dimension);
     }
 
     private ScorePanel initScorePanel() {
