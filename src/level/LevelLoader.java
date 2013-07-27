@@ -69,7 +69,6 @@ public class LevelLoader {
         loadGameObjects();
     }
     
-    //<editor-fold defaultstate="collapsed" desc="Ladowanie obiektow potrzebnych do utworzenia poziomu">
     /**
      * Laduje obrazki klockow, z ktorych jest zbudowana plansza,
      * do listy dostepnych obrazkow, z ktorych mozna budowac
@@ -101,10 +100,9 @@ public class LevelLoader {
             factory.register(c);
             objectPrototypes.put(c, (GameObject) factory.create(c));
         }
-    }//</editor-fold>
+    }
     
     
-    //<editor-fold desc="Ladowanie poziomu, przeladowanie poziomu, pobranie numeru i sprawdzenie, czy jest nastepny">
     /**
      * Reset gry - rozpoczecie od nowa, a wiec aktualny poziom jest ustawiany na 0
      */
@@ -151,8 +149,8 @@ public class LevelLoader {
      */
     public int getLevelNumber(){
         return currentLevel;
-    }//</editor-fold>
-    
+    }
+
     
     /**
      * Ladowanie mapy.
@@ -235,7 +233,6 @@ public class LevelLoader {
         return map;
     }
     
-    //<editor-fold defaultstate="collapsed" desc="Dodawanie nowego obiektu do mapy">
     /**
      * Dodaje obiekt do mapie na podstawie informacji o klasie
      * @param map mapa, do ktorej chcemy dodac obiekt
@@ -247,7 +244,6 @@ public class LevelLoader {
         GameObject object = (GameObject) getGameObject(classInfo).clone();
         if (object != null) {
 			// ustawienie obiektu w okreslonym punkcie mapy
-        	System.err.println(object.getWidth());
 			object.setX(Level.fieldsToPixels(positionX) - object.getWidth()
 					+ Level.FIELD_SIZE);
 			object.setY(Level.fieldsToPixels(positionY) - object.getHeight()
@@ -279,6 +275,6 @@ public class LevelLoader {
             case 1: addGameObject(map, classInfo, 11, 0); break;
             case 2: addGameObject(map, classInfo, 20, 0); break;
         }
-    }//</editor-fold>
+    }
     
 }

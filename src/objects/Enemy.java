@@ -93,8 +93,7 @@ public class Enemy extends Tank{
         }
         
         public static GameObject create(){
-        	System.out.println(enemyAnimation.size());
-            return new Enemy(enemyAnimation); 
+            return new Enemy(enemyAnimation);
         }
     }//</editor-fold>
     

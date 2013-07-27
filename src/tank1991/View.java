@@ -214,7 +214,7 @@ public class View implements Observer{
         }
         else{
             component.requestFocus();
-            model.resumeGame();
+            model.pauseGame();
             
         }
         

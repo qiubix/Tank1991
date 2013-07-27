@@ -120,7 +120,7 @@ public class ScreenManager {
                 device.setDisplayMode(displayMode);
             }
             catch(IllegalArgumentException ex){
-                ex.printStackTrace(System.out);
+                ex.printStackTrace(System.err);
             }
             window.setSize(displayMode.getWidth(), displayMode.getHeight());
         }

@@ -152,12 +152,8 @@ public class Model extends Observed{
         int enemiesOnMap = 0;
         if(!isPaused()){
             
-            //updatePlayerPhysics(elapsedTime);
-            physics.update(this, map.getPlayer(), elapsedTime);
-            if(map.getPlayer().isShooting()){
-                physics.update(this, map.getPlayer().getBullet(), elapsedTime);
-            }
-            
+            updatePlayerPhysics(elapsedTime);
+
             //aktualizacja fizyki wszystkich obiektow
             for (Iterator<DynamicObject> i = map.iterator(); i.hasNext();) {
                 DynamicObject object = i.next();
