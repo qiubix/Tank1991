@@ -36,6 +36,7 @@ public class Controller implements Observer {
         this.view = view;
 
         createGameActions();
+        initKeyboard();
 
         this.view.addMainMenuListener(new MainMenuListener());
         this.view.addKeyListener(keyboard);
@@ -49,16 +50,12 @@ public class Controller implements Observer {
     private void createGameActions() { //TODO: Change method name
         actions = new GameAction[Keys.values().length];
         for (int i = 0; i < actions.length; i++) {
-            /*
-             * if(i == Keys.EXIT.ordinal() || i == Keys.PAUSE.ordinal()){
-             * actions[i] = new
-             * GameAction(GameAction.DETECT_INITIAL_PRESS_ONLY); } else{
-             * actions[i] = new GameAction(); }
-             */
             actions[i] = new GameAction();
         }
 
-        //TODO: extract as new method
+    }
+
+    private void initKeyboard() {
         keyboard = new Keyboard();
         keyboard.mapToKey(getAction(Keys.UP), KeyEvent.VK_UP);
         keyboard.mapToKey(getAction(Keys.DOWN), KeyEvent.VK_DOWN);
@@ -312,7 +309,7 @@ public class Controller implements Observer {
                 case "new":
                     nemGame();
                     break;
-                case "credits":
+                case "credits": //TODO: add support to "credits" option in main menu
                     break;
                 case "exit":
                     exitGame();
