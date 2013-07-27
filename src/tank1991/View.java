@@ -1,13 +1,3 @@
-/**
- * View.java
- * @author Kari
- */
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package tank1991;
 
 import event.Keyboard;
@@ -29,16 +19,11 @@ import util.Observer;
 
 
 /* FIXME: provide HD support, changing screen context, better level resolution and universal level scaling to fit every screen */
-public class View implements Observer{
+public class View implements Observer {
     
-    /**
-     * Rozmiar czcionki
-     */
+
     private static final int FONT_SIZE = 20;
-    
-    /**
-     * Zestaw mozliwych trybow wyswietlania
-     */
+
     private static final DisplayMode[] POSSIBLE_MODES = {
         new DisplayMode(1920, 1080, 32, 0),
         new DisplayMode(1366, 768, 32, 0),
@@ -51,112 +36,103 @@ public class View implements Observer{
         new DisplayMode(1280, 800, 32, 0),
         new DisplayMode(1650, 1050, 32, 0)
     };
-    
-    /**
-     * Przechowuje aktualny kontekst graficzny ekranu
-     */
+
     private Drawable graphicsContext;
-    
+
     /**
      * Panel zawierajacy wszystkie konteksty graficzne
      */
     private JPanel contextPanel;
-    
-    /**
-     * Menu glowne
-     */
+
     private MainMenu mainMenu;
-    
-    /**
-     * Menu pauzy
-     */
     private PauseMenu pauseMenu;
-    
-    /**
-     * Panel wynikow
-     */
     private ScorePanel scorePanel;
-    
-    /**
-     * Zarzadca ekranu
-     */
+
     protected ScreenManager screen;
-    
-    /**
-     * Okno gry
-     */
+
     protected JFrame window;
-    
-    /**
-     * Model
-     */
+
     protected Model model;
-    
-    /**
-     * Niewidoczny kursor
-     */
+
     public static final Cursor INVISIBLE_CURSOR = 
             Toolkit.getDefaultToolkit().createCustomCursor( Toolkit.getDefaultToolkit().getImage(""), 
                                                             new Point(0,0),
                                                             "invisible");
     
-//    private InputManager inputManager;
-    
+
     public View(Model model){
         this.model = model;
-        
+
+        init();
+    }
+
+    private void init() {
         initScreen();
-        
-        //Inicjalizacja okna
+        initWindow();
+        initPanels();
+        addPanelsToContext();
+        addContextToWindow();
+        toggleContext(mainMenu);
+    }
+
+
+    private void initScreen() {
+		screen = new ScreenManager();
+	//        DisplayMode displayMode = screen.getCurrentDisplayMode();
+		DisplayMode displayMode = screen.getFirstCompatibleMode(POSSIBLE_MODES);
+		screen.setFullScreen(displayMode);
+        setScreenDimentionsInModel();
+	}
+
+    //TODO: Change name
+    private void setScreenDimentionsInModel() {
+        model.setScreenWidth(screen.getWidth());
+        model.setScreenHeight(screen.getHeight());
+    }
+
+    private void initWindow() {
         window = screen.getFullScreenWindow();
-        window.setFont(new Font("Dialog",Font.PLAIN,FONT_SIZE));
+        window.setFont(new Font("Dialog", Font.PLAIN, FONT_SIZE));
         window.setTitle("Tank 1991");
         window.setBackground(Color.white);
         window.setForeground(Color.LIGHT_GRAY);
         window.setCursor(INVISIBLE_CURSOR);
         window.setFocusTraversalKeysEnabled(false);
-        
-        
+    }
+
+    private void initPanels() {
         mainMenu = new MainMenu("main_menu_back_2.jpg", 350, 250);
         pauseMenu = new PauseMenu("frame3.png", "Paused");
-        
-        scorePanel = new ScorePanel(new GraphicCounter(model.levelCounter, "level_icon3.png"), 
-                                    new GraphicCounter(model.lifesCounter, "lifes_icon2.png"), 
-                                    new GraphicCounter(model.enemiesCounter, "enemy_icon2.png"), 
-                                    new GraphicCounter(model.pointCounter, "level_icon4.png"),
-                                    new Point(50,30));
-                                    
-                                    
-        
+
+        scorePanel = initScorePanel();
+
         contextPanel = new JPanel(new CardLayout());
+    }
+
+    private ScorePanel initScorePanel() {
+        return new ScorePanel(new GraphicCounter(model.levelCounter, "level_icon3.png"),
+                              new GraphicCounter(model.lifesCounter, "lifes_icon2.png"),
+                              new GraphicCounter(model.enemiesCounter, "enemy_icon2.png"),
+                              new GraphicCounter(model.pointCounter, "level_icon4.png"),
+                              new Point(50,30));
+    }
+
+    private void addPanelsToContext() {
         contextPanel.add(mainMenu);
         contextPanel.add(pauseMenu);
         contextPanel.add(scorePanel);
         contextPanel.add(model.getLevel());
+    }
+
+    private void addContextToWindow() {
         window.add(contextPanel);
-        
-        
-        model.setScreenWidth(screen.getWidth());
-        model.setScreenHeight(screen.getHeight());
-        
-        //rozpoczecie w menu glownym
-        toggleContext(mainMenu);
     }
 
 
-
-	private void initScreen() {
-		//Inicjalizacja ekranu
-		screen = new ScreenManager();
-	//        DisplayMode displayMode = screen.getCurrentDisplayMode();
-		DisplayMode displayMode = screen.getFirstCompatibleMode(POSSIBLE_MODES);
-		screen.setFullScreen(displayMode);
-	}
-    
     public ScreenManager getScreen(){
         return screen;
     }
-    
+
     public MainMenu getMainMenu(){
         return mainMenu;
     }

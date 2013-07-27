@@ -16,6 +16,7 @@ import java.awt.Point;
 import javax.swing.JPanel;
 
 
+//TODO: Change constructor (Factory?)
 public class ScorePanel extends JPanel{
     
     private Point position;
