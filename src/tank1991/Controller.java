@@ -46,7 +46,7 @@ public class Controller implements Observer {
      * Konfiguracja zdarzen wejsciowych klawiatury. Tworzy obiekty typu
      * GameAction i przypisuje je do klawiszy
      */
-    private void createGameActions() {
+    private void createGameActions() { //TODO: Change method name
         actions = new GameAction[Keys.values().length];
         for (int i = 0; i < actions.length; i++) {
             /*
@@ -58,6 +58,7 @@ public class Controller implements Observer {
             actions[i] = new GameAction();
         }
 
+        //TODO: extract as new method
         keyboard = new Keyboard();
         keyboard.mapToKey(getAction(Keys.UP), KeyEvent.VK_UP);
         keyboard.mapToKey(getAction(Keys.DOWN), KeyEvent.VK_DOWN);
@@ -78,6 +79,7 @@ public class Controller implements Observer {
         return actions[action.ordinal()];
     }
 
+    //TODO: Zmienic nazwe funkcji, rozbic na mniejsze, usunac duplikaty kodu
     public void getEvents() {
         boolean alive = !model.getLevel().getPlayer().isDead();
         if (getAction(Keys.EXIT).isPressed()) {
@@ -192,7 +194,7 @@ public class Controller implements Observer {
     }
     
 
-    
+    //TODO: Devide into smaller methods, break down switch construction
     private void enemiesDecide() {
         if (!model.isPaused()) {
             for (Iterator<DynamicObject> i = model.getLevel().iterator(); i.hasNext();) {
