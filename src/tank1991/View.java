@@ -113,7 +113,7 @@ public class View implements Observer {
         int rigidAreaHeight = screen.getHeight()/4;
         int rigidAreaWidth = screen.getWidth();
         Dimension dimension = new Dimension(rigidAreaWidth,rigidAreaHeight);
-        return new MainMenu("main_menu_back_1.jpg", dimension);
+        return new MainMenu(dimension);
     }
 
     private ScorePanel initScorePanel() {

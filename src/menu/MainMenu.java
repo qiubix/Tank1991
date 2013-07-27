@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 import javax.swing.*;
 
+//TODO: change constructor and create some constants to keep file names
 public class MainMenu extends Menu{
 
     private JButton resumeGameButton,
@@ -18,28 +19,24 @@ public class MainMenu extends Menu{
                     creditsButton,
                     exitButton;
 
-    private boolean isStarted;
-    
-    
-    
+    private boolean isGameStarted;
+
+    private static String backgroundFileName = "main_menu_back_1.jpg";
+
     /**
      * Tworzenie obiektu menu glownego
-     * @param backgroundFileName nazwa pliku tla
      * @param dimension rozmiar pustej przestrzeni nad przyciskami
      */
-    public MainMenu(String backgroundFileName, Dimension dimension){
+    public MainMenu(Dimension dimension){
         super(backgroundFileName);
-        isStarted = false;
+        isGameStarted = false;
 
         configureInput();
         NullRepaintManager.install();
 
-        //ustawienie ukladu i pozycjonowania menu
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-//        add(Box.createRigidArea(dimension));
 
         produceMenuButtons();
-
         addMenuButtons(dimension);
     }
 
@@ -84,8 +81,8 @@ public class MainMenu extends Menu{
      */
     @Override
     public void requestFocus(){
-        resumeGameButton.setVisible(isStarted);
-        if(isStarted){
+        resumeGameButton.setVisible(isGameStarted);
+        if(isGameStarted){
             resumeGameButton.requestFocus();
         }
         else{
@@ -97,7 +94,7 @@ public class MainMenu extends Menu{
      * @param isStarted status rozpoczecia gry
      */
     public void setIsStarted(boolean isStarted){
-        this.isStarted = isStarted;
+        this.isGameStarted = isStarted;
     }
     /**
      *
