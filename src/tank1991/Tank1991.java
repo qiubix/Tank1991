@@ -12,7 +12,6 @@ public class Tank1991 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        new GameCore().run(); 
+        new GameCore().run();
     }
 }
