@@ -7,10 +7,6 @@ package tank1991;
  */
 public class Tank1991 {
 
-    /**
-     * Uruchomienie glownego watku aplikacji
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         new GameCore().run();
     }
