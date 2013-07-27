@@ -105,56 +105,90 @@ public class Controller implements Observer {
 
     //TODO: Remove duplicates, extract new methods
     private void movePlayer() {
+        if (getAction(Keys.LEFT).isPressed()) {
+            movePlayerLeft();
+        }
+        if (getAction(Keys.RIGHT).isPressed()) {
+            movePlayerRight();
+        }
+        if (getAction(Keys.UP).isPressed()) {
+            movePlayerUp();
+        }
+        if (getAction(Keys.DOWN).isPressed()) {
+            movePlayerDown();
+        }
+    }
+
+    private void movePlayerLeft() {
         Player player = model.getPlayer();
         float velocityX = 0;
         float velocityY = 0;
 
-        if (getAction(Keys.LEFT).isPressed()) {
-            getAction(Keys.UP).reset();
-            getAction(Keys.DOWN).reset();
-            if (player.getX() < 0) {
-                player.setVelocityX(0);
-            } else {
-                velocityX -= player.getSpeed();
-                if (player.isTurning()) {
-                    GamePhysics.alignObject(model.getLevel(), player);
-                }
+        getAction(Keys.UP).reset();
+        getAction(Keys.DOWN).reset();
+        if (player.getX() < 0) {
+            player.setVelocityX(0);
+        } else {
+            velocityX -= player.getSpeed();
+            if (player.isTurning()) {
+                GamePhysics.alignObject(model.getLevel(), player);
             }
         }
-        if (getAction(Keys.RIGHT).isPressed()) {
-            getAction(Keys.UP).reset();
-            getAction(Keys.DOWN).reset();
-            if (player.getX() + player.getWidth() >= view.getScreen().getWidth()) {
-                player.setVelocityX(0);
-            } else {
-                velocityX += player.getSpeed();
-                if (player.isTurning()) {
-                    GamePhysics.alignObject(model.getLevel(), player);
-                }
+        player.setVelocityX(velocityX);
+        player.setVelocityY(velocityY);
+    }
+
+    private void movePlayerRight() {
+        Player player = model.getPlayer();
+        float velocityX = 0;
+        float velocityY = 0;
+
+        getAction(Keys.UP).reset();
+        getAction(Keys.DOWN).reset();
+        if (player.getX() + player.getWidth() >= view.getScreen().getWidth()) {
+            player.setVelocityX(0);
+        } else {
+            velocityX += player.getSpeed();
+            if (player.isTurning()) {
+                GamePhysics.alignObject(model.getLevel(), player);
             }
         }
-        if (getAction(Keys.UP).isPressed()) {
-            getAction(Keys.LEFT).reset();
-            getAction(Keys.RIGHT).reset();
-            if (player.getY() < 0) {
-                player.setVelocityY(0);
-            } else {
-                velocityY -= player.getSpeed();
-                if (player.isTurning()) {
-                    GamePhysics.alignObject(model.getLevel(), player);
-                }
+        player.setVelocityX(velocityX);
+        player.setVelocityY(velocityY);
+    }
+
+    private void movePlayerUp() {
+        Player player = model.getPlayer();
+        float velocityX = 0;
+        float velocityY = 0;
+
+        getAction(Keys.LEFT).reset();
+        getAction(Keys.RIGHT).reset();
+        if (player.getY() < 0) {
+            player.setVelocityY(0);
+        } else {
+            velocityY -= player.getSpeed();
+            if (player.isTurning()) {
+                GamePhysics.alignObject(model.getLevel(), player);
             }
         }
-        if (getAction(Keys.DOWN).isPressed()) {
-            getAction(Keys.LEFT).reset();
-            getAction(Keys.RIGHT).reset();
-            if (player.getY() + player.getHeight() >= view.getScreen().getHeight()) {
-                player.setVelocityY(0);
-            } else {
-                velocityY += player.getSpeed();
-                if (player.isTurning()) {
-                    GamePhysics.alignObject(model.getLevel(), player);
-                }
+        player.setVelocityX(velocityX);
+        player.setVelocityY(velocityY);
+    }
+
+    private void movePlayerDown() {
+        Player player = model.getPlayer();
+        float velocityX = 0;
+        float velocityY = 0;
+
+        getAction(Keys.LEFT).reset();
+        getAction(Keys.RIGHT).reset();
+        if (player.getY() + player.getHeight() >= view.getScreen().getHeight()) {
+            player.setVelocityY(0);
+        } else {
+            velocityY += player.getSpeed();
+            if (player.isTurning()) {
+                GamePhysics.alignObject(model.getLevel(), player);
             }
         }
         player.setVelocityX(velocityX);
