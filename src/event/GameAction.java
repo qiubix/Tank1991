@@ -1,10 +1,6 @@
-/**
- * GameAction.java
- * @author Kari
- */
-
-
 package event;
+
+//TODO: Reorganise class hierarchy, introduce polymorphism and provide better event communication
 
 /**
  * Abstrakcyjna klasa bedaca baza dla akcji inicjowanych przez uzytkownika, 

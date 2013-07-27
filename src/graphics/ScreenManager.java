@@ -19,6 +19,7 @@ import javax.swing.JFrame;
  * Zarzadca ekranow. Zapewnia podwojne buforowanie i przelaczanie stron.
  * @author Kari
  */
+//TODO: @see View
 public class ScreenManager {
     //Urzadzenie graficzne 
     private GraphicsDevice device;

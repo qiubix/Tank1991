@@ -3,7 +3,7 @@ package objects;
 import graphics.Graphic;
 import java.awt.Image;
 
-
+//TODO: reorganise class hierarchy, introduce interfaces and abstract classes
 public class GameObject {
 
     protected Graphic graphic;

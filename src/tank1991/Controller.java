@@ -54,6 +54,7 @@ public class Controller implements Observer {
         }
     }
 
+    //TODO: provide better event communication
     private void initKeyboard() {
         keyboard = new Keyboard();
         keyboard.mapToKey(getAction(Keys.UP), KeyEvent.VK_UP);

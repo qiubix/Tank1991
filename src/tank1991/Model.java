@@ -148,6 +148,7 @@ public class Model extends Observed{
      * model, na podstawie czasu, jaki minal od ostatniej aktualizacji
      * @param elapsedTime czas, ktory uplynal od ostatniego odswiezenia modelu
      */
+    //TODO: extract new methods to make it cleaner and introduce polymorphism
     public void update(long elapsedTime){
         int enemiesOnMap = 0;
         if(!isPaused()){

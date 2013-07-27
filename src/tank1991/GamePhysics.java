@@ -15,7 +15,7 @@ import java.util.Iterator;
 import level.Level;
 import objects.*;
 
-
+//TODO: refactor methods, remove duplicates
 public class GamePhysics {
     
     

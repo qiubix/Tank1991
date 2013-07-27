@@ -28,7 +28,7 @@ import util.Observer;
 
 
 
-
+/* FIXME: provide HD support, changing screen context, better level resolution and universal level scaling to fit every screen */
 public class View implements Observer{
     
     /**
