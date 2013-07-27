@@ -25,41 +25,27 @@ import util.Observed;
  */
 public class Model extends Observed{
 
-    
-    /** Licznik zyc gracza   */
     private static final int LIVES = 3;
-    
-    
-    /** Liczba przeciwnikow, ktora trzeba pokonac, zeby przejsc do nastepnej planszy     */
     private static int ENEMIES_NUMBER = 10; 
-    
-    /** Status zapauzowania gry     */
-    private boolean paused;
-    
+    private boolean isPaused;
     
     /** Przechowuje aktualny poziom     */
-    private Level map;
-    
+    private Level map;    
     
     /** Zarzadca poziomow gry. Pozwala wczytywac nowe poziomy i nimi zarzadza    */
     private LevelLoader levelManager;
     
-    
     /** Obsluga fizyki gry - m.in. zderzenia obiektow     */
     private GamePhysics physics;
     
-    
     /** Stan rozgrywki     */
     private GameState gameState;
-
     
     /** Mozliwe stany gry     */
     public enum GameState{
         PLAY, LOSS, WIN, LEVEL_UP
     }
     
-    
-    //<editor-fold defaultstate="collapsed" desc="Liczniki">
     /** licznik zyc bohatera */
     public Counter lifesCounter;
     
@@ -71,22 +57,13 @@ public class Model extends Observed{
     
     /** Licznik punktow gracza */
     public Counter pointCounter;
-    //</editor-fold>
     
-    
-    //<editor-fold defaultstate="collapsed" desc="Szerokosc i wysokosc ekranu">
     /** Szerokosc ekranu w pikselach */
     private int screenWidth;
     /** Wysokosc ekranu w pikselach */
     private int screenHeight;
-    //</editor-fold>
     
-    
-    
-    /**
-     * Konstruktor klasy Model
-     * Stworzenie modelu i inicjalizacja skladowych
-     */
+
     public Model(){
         levelManager = new LevelLoader();
         physics = new GamePhysics();
@@ -94,10 +71,10 @@ public class Model extends Observed{
         lifesCounter = new Counter();
         enemiesCounter = new Counter();
         pointCounter = new Counter();
+        
         setPaused(true);
         startGame();
     }
-    
     
     /**
      * Reset licznikow i poziomu, potrzebny przy kazdym rozpoczeciu gry
@@ -111,8 +88,6 @@ public class Model extends Observed{
         enemiesCounter.set(ENEMIES_NUMBER);
     }
     
-    
-    
     /**
      * Ustawia liczbe wrogow, ktorych trzeba pokonac, zeby ukonczyc poziom
      * @param count nowa liczba wrogow
@@ -121,8 +96,6 @@ public class Model extends Observed{
         ENEMIES_NUMBER = count;
     }
     
-    
-    //<editor-fold defaultstate="collapsed" desc="Szerokosc i wysokosc ekranu">
     /**
      * Pobieranie szerokosci ekranu
      * @return szerokosc ekranu w pikselach
@@ -130,7 +103,6 @@ public class Model extends Observed{
     public int getScreenWidth(){
         return screenWidth;
     }
-    
     
     /**
      * Pobieranie wysokosci ekranu
@@ -140,7 +112,6 @@ public class Model extends Observed{
         return screenHeight;
     }
     
-    
     /**
      * Ustawianie szerokosci ekranu (zmiennej przechowujacej ta szerokosc)
      * @param screenWidth ustawia zmienna screenWidth
@@ -149,36 +120,30 @@ public class Model extends Observed{
         this.screenWidth = screenWidth;
     }
     
-    
     /**
      * Ustawienie zmiennej przechowujacej wysokosc ekranu
      * @param screenHeight nowa wysokosc ekranu
      */
     public void setScreenHeight(int screenHeight){
         this.screenHeight = screenHeight;
-    }//</editor-fold>
+    }
     
-    
-    //<editor-fold defaultstate="collapsed" desc="Ustawianie i pobieranie informacji o stanie pauzy">
     /**
      * Informacja o stanie pauzy
      * @return true jesli gra jest zatrzymana
      */
     public boolean isPaused(){
-        return paused;
+        return isPaused;
     }
-    
     
     /**
      * Przelaczenie trybu pauzy
      * @param paused true powoduje przelaczenie gry w tryb pauzy
      */
     public final void setPaused(boolean paused){
-        this.paused = paused;
-    }//</editor-fold>
+        this.isPaused = paused;
+    }
     
-    
-    //<editor-fold defaultstate="collapsed" desc="Stan gry - gettery, settery, sprawdzenie konca">
     /**
      * Sprawdzenie stanu gry
      * @return aktualny stan gry ( gra, wygrana/przegrana, nastepny poziom ) 
@@ -195,17 +160,14 @@ public class Model extends Observed{
         this.gameState = gameState;
     }
     
-    
     /**
      * Sprawdzenie konca gry
      * @return true jesli gra sie zakonczyla
      */
     public boolean isGameOver(){
         return gameState == GameState.WIN || gameState == GameState.LOSS;
-    }//</editor-fold>
+    }
     
-    
-    //<editor-fold defaultstate="collapsed" desc="Metody pobierajace i ladujace poziomy do modelu">
     /**
      * Pobieranie mapy aktualnego poziomu
      * @return 
@@ -221,15 +183,13 @@ public class Model extends Observed{
     public void nextLevel() {
         setGameState((levelManager.isNextLevel()) ? gameState.LEVEL_UP : gameState.WIN);
     }
-    
-    
+        
     /**
      * Przeladowanie aktualnego levelu
      */
     public void reloadLevel(){
         map = levelManager.reloadLevel();
     }
-    
     
     /**
      * Wczytanie nastepnego poziomu, reset licznika wrogow, ustawienie stanu rozgrywki
@@ -238,9 +198,7 @@ public class Model extends Observed{
         map = levelManager.loadNextLevel();
         enemiesCounter.set(ENEMIES_NUMBER);
         setGameState(GameState.PLAY);
-    }//</editor-fold>
-    
-    
+    }
     
     /**
      * Aktualizacja stanu rozgrywki i poinformowanie o tym obiektow obserwujacych
@@ -251,11 +209,7 @@ public class Model extends Observed{
         int enemiesOnMap = 0;
         if(!isPaused()){
             
-            //aktualizacja fizyki gracza
-            physics.update(this, map.getPlayer(), elapsedTime);
-            if(map.getPlayer().isShooting()){
-                physics.update(this, map.getPlayer().getBullet(), elapsedTime);
-            }
+            updatePlayerPhysics(elapsedTime);
             
             //aktualizacja fizyki wszystkich obiektow
             for (Iterator<DynamicObject> i = map.iterator(); i.hasNext();) {
@@ -288,5 +242,13 @@ public class Model extends Observed{
         }
         signalToObservers();
     }
+
+	private void updatePlayerPhysics(long elapsedTime) {
+		//aktualizacja fizyki gracza
+		physics.update(this, map.getPlayer(), elapsedTime);
+		if(map.getPlayer().isShooting()){
+		    physics.update(this, map.getPlayer().getBullet(), elapsedTime);
+		}
+	}
     
 }

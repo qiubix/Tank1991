@@ -11,6 +11,7 @@
 package level;
 
 import graphics.ImageLoader;
+
 import java.awt.Image;
 import java.awt.Point;
 import java.io.BufferedReader;
@@ -18,6 +19,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
+
 import objects.Eagle;
 import objects.Enemy;
 import objects.GameObject;
@@ -73,7 +75,11 @@ public class LevelLoader {
      * do listy dostepnych obrazkow, z ktorych mozna budowac
      */
     private void loadBlocks(){
-        blocks = ImageLoader.loadImageList("brick", "png");
+        try {
+			blocks = ImageLoader.loadImageList("brick", "png");
+		} catch (Exception ex) {
+			ex.printStackTrace(System.err);
+		}
     }
     
     /**
@@ -122,7 +128,7 @@ public class LevelLoader {
             return loadMap(LEVEL_DIR + "map"+ (++currentLevel));
         }
         catch(IOException ex){
-            ex.printStackTrace(System.out);
+            ex.printStackTrace(System.err);
             throw new RuntimeException("Cannot find map" + currentLevel);
         }
     }
@@ -160,7 +166,9 @@ public class LevelLoader {
         int height = 0;
 
         //Odczytanie wszystkich wierszy z pliku
+             	
         BufferedReader reader = new BufferedReader(new FileReader(filename));
+        
         while (true) {
             String line = reader.readLine();
             if (line == null) {
@@ -239,6 +247,7 @@ public class LevelLoader {
         GameObject object = (GameObject) getGameObject(classInfo).clone();
         if (object != null) {
 			// ustawienie obiektu w okreslonym punkcie mapy
+        	System.err.println(object.getWidth());
 			object.setX(Level.fieldsToPixels(positionX) - object.getWidth()
 					+ Level.FIELD_SIZE);
 			object.setY(Level.fieldsToPixels(positionY) - object.getHeight()

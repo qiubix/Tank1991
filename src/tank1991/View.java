@@ -40,6 +40,7 @@ public class View implements Observer{
      * Zestaw mozliwych trybow wyswietlania
      */
     private static final DisplayMode[] POSSIBLE_MODES = {
+        new DisplayMode(1920, 1080, 32, 0),
         new DisplayMode(1366, 768, 32, 0),
         new DisplayMode(1280, 1024, 32,0),
         new DisplayMode(1280, 720, 32, 0),
@@ -48,11 +49,8 @@ public class View implements Observer{
         new DisplayMode(800, 600, 16, 0),
         new DisplayMode(1280, 1024, 32, 0),
         new DisplayMode(1280, 800, 32, 0),
-        new DisplayMode(1650, 1050, 32, 0),
-        new DisplayMode(1920, 1080, 32, 0)
+        new DisplayMode(1650, 1050, 32, 0)
     };
-    
-    
     
     /**
      * Przechowuje aktualny kontekst graficzny ekranu
@@ -64,18 +62,15 @@ public class View implements Observer{
      */
     private JPanel contextPanel;
     
-    
     /**
      * Menu glowne
      */
     private MainMenu mainMenu;
     
-    
     /**
      * Menu pauzy
      */
     private PauseMenu pauseMenu;
-    
     
     /**
      * Panel wynikow
@@ -97,8 +92,6 @@ public class View implements Observer{
      */
     protected Model model;
     
-    
-    
     /**
      * Niewidoczny kursor
      */
@@ -107,19 +100,12 @@ public class View implements Observer{
                                                             new Point(0,0),
                                                             "invisible");
     
-    
 //    private InputManager inputManager;
-    
-    
     
     public View(Model model){
         this.model = model;
         
-        //Inicjalizacja ekranu
-        screen = new ScreenManager();
-//        DisplayMode displayMode = screen.getCurrentDisplayMode();
-        DisplayMode displayMode = screen.getFirstCompatibleMode(POSSIBLE_MODES);
-        screen.setFullScreen(displayMode);
+        initScreen();
         
         //Inicjalizacja okna
         window = screen.getFullScreenWindow();
@@ -156,13 +142,20 @@ public class View implements Observer{
         //rozpoczecie w menu glownym
         toggleContext(mainMenu);
     }
-    
-    
+
+
+
+	private void initScreen() {
+		//Inicjalizacja ekranu
+		screen = new ScreenManager();
+	//        DisplayMode displayMode = screen.getCurrentDisplayMode();
+		DisplayMode displayMode = screen.getFirstCompatibleMode(POSSIBLE_MODES);
+		screen.setFullScreen(displayMode);
+	}
     
     public ScreenManager getScreen(){
         return screen;
     }
-    
     
     public MainMenu getMainMenu(){
         return mainMenu;
@@ -171,7 +164,6 @@ public class View implements Observer{
     public PauseMenu getPauseMenu(){
         return pauseMenu;
     }
-    
 
     @Override
     public void signal(Observed observed) {
@@ -188,8 +180,6 @@ public class View implements Observer{
             }
         }
     }
-
-    
     
     /**
      * Odrysowanie obiektow graficznych na ekranie
@@ -209,8 +199,6 @@ public class View implements Observer{
         screen.update();
     }
 
-    
-    
     /**
      * Przelaczenie kontenkstu graficznego na podany. Wyswietlenie go oraz
      * ustawienie fokusu
@@ -233,17 +221,13 @@ public class View implements Observer{
         window.validate();
     }
 
-    
-    
     void addMainMenuListener(ActionListener listener){
         mainMenu.addActionListener(listener);
     }
 
-
     void addKeyListener(Keyboard keyboard){
         window.addKeyListener(keyboard);
     }
-    
     
     /**
      * Funkcja tworzy menu z komunikatem podsumowania rozgrywki.

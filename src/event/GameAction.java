@@ -53,7 +53,6 @@ public class GameAction {
         this(null, behaviour);
     }
     
-    
     /**
      * Tworzenie nowego obiektu GameAction
      * Dzialanie podane
@@ -65,7 +64,6 @@ public class GameAction {
         this.behaviour = behaviour;
         reset();
     }
-    
     
     /**
      * Zwraca nazwe danego obiektu GameAction
@@ -83,7 +81,6 @@ public class GameAction {
         amount = 0;
     }
     
-    
     /**
      * Programowe przycisniecie w bierzacym obiekcie GameAction. 
      * Ma takie samo dzialanie, co wywolanie press() i potem release()
@@ -100,7 +97,6 @@ public class GameAction {
         press(1);
     }
     
-    
     /**
      * Sygnalizacja nacisniecia klawisza okreslona liczbe razy lub przesuniecia
      * myszy o dany dystans
@@ -112,14 +108,12 @@ public class GameAction {
         }
     }
     
-    
     /**
      * Sygnalizacja zwolnienia klawisza
      */
     public synchronized void release(){
         state = STATE_RELEASED;
     }
-    
     
     /**
      * Zwraca informacje o tym, czy od ostatniego sprawdzenia zostal nacisniety
@@ -128,7 +122,6 @@ public class GameAction {
     public synchronized boolean isPressed(){
         return (getAmount() != 0);
     }
-    
     
     /**
      * Liczba nacisniec klawisza od ostatniego sprawdzenia, 

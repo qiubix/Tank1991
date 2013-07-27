@@ -137,8 +137,6 @@ public class GamePhysics {
             
     }
     
-    
-    
     /**
      * Obliczenie pola kolidujacego z danym obiektem dynamicznym
      * @param map mapa obiektu. Zawiera informacje o polach. 
@@ -155,7 +153,6 @@ public class GamePhysics {
         int toX = Math.max(tank.getX(), newX);
         int fromY = Math.min(tank.getY(), newY);
         int toY = Math.max(tank.getY(), newY);
-        
         
         //Wyznaczenie obszaru potencjalnej kolizji w polach
         int fromTileX = Level.pixelsToFields(fromX);
@@ -176,7 +173,6 @@ public class GamePhysics {
         
         return collidingField;
     }
-    
     
     /**
      * Sprawdza kolizje miedzy dwoma obiektami dynamicznymi
@@ -203,7 +199,6 @@ public class GamePhysics {
                 o2y < o1y + o1.getHeight());
     }
 
-
     /**
      * Wyrownanie czolgu do granic pola
      * @param map aktualny poziom
@@ -214,7 +209,6 @@ public class GamePhysics {
         tank.setX(position.x);
         tank.setY(position.y);
     }
-    
     
     /**
      * Obliczenie wspolrzednych najblizszego pola
@@ -229,7 +223,6 @@ public class GamePhysics {
         Point result = new Point(Level.fieldsToPixels(positionX), Level.fieldsToPixels(positionY));
         return result;
     }
-    
     
     /**
      * Sprawdzenie kolizji obiektu dynamicznego z innymi obiektami mapy
@@ -252,8 +245,6 @@ public class GamePhysics {
         return collidingObject;
     }
     
-    
-    //<editor-fold defaultstate="collapsed" desc="Reakcja na kolicje obiektu dynamicznego (aktualnie nieuzywane) ">
     private void collisionVertical(DynamicObject object){
         if(object instanceof Enemy){
             ((Enemy)object).collideVertical();
@@ -263,7 +254,6 @@ public class GamePhysics {
         }
     }
     
-    
     private void collisionHorizontal(DynamicObject object){
         if(object instanceof Enemy){
             ((Enemy)object).collideHorizontal();
@@ -271,8 +261,7 @@ public class GamePhysics {
         else{
             object.collideHorizontal();
         }
-    }//</editor-fold>
-    
+    }
     
 }
 
