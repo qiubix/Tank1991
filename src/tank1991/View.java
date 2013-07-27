@@ -59,10 +59,8 @@ public class View implements Observer {
                                                             new Point(0,0),
                                                             "invisible");
     
-
     public View(Model model){
         this.model = model;
-
         init();
     }
 
@@ -74,7 +72,6 @@ public class View implements Observer {
         addContextToWindow();
         toggleContext(mainMenu);
     }
-
 
     private void initScreen() {
 		screen = new ScreenManager();

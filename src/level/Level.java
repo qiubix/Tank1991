@@ -83,7 +83,6 @@ public class Level extends JPanel implements Drawable{
         return fields[0].length;
     }
     
-    //<editor-fold defaultstate="collapsed" desc="Edycja pol mapy">
     /**
      * Pobranie pola o okreslonych wspolrzednych
      * @param x
@@ -129,10 +128,8 @@ public class Level extends JPanel implements Drawable{
            destroyableFields.remove(position);
        }
        
-    }//</editor-fold>
-    
-    
-    //<editor-fold defaultstate="collapsed" desc="Czolg gracza">
+    }
+
     /**
      * Zwraca gracza 
      * @return odnosnik do obiektu gracza znajdujacego sie na danym poziomie
@@ -147,10 +144,8 @@ public class Level extends JPanel implements Drawable{
      */
     public void setPlayer(Player player){
         this.player = player;
-    }//</editor-fold>
-    
-    
-    //<editor-fold defaultstate="collapsed" desc="Tlo poziomu">
+    }
+
     /**
      * Ustawia tlo poziomu
      * @param background obrazek nowego tla, ktore chcemy ustawic
@@ -165,10 +160,8 @@ public class Level extends JPanel implements Drawable{
      */
     public Image getLandscape(){
         return background;
-    }//</editor-fold>
+    }
     
-    
-    //<editor-fold defaultstate="collapsed" desc="Zmiany na liscie obiektow gry">
     /**
      * Dodanie nowego obiektu gry do listy dostepnych obiektow gry
      * @param object nowy obiekt, ktory chcemy dodac do listy
@@ -183,7 +176,7 @@ public class Level extends JPanel implements Drawable{
      */
     public void removeGameObject(GameObject object){
         listOfGameObjects.remove(object);
-    }//</editor-fold>
+    }
     
     /**
      * Funkcja zwraca obiekt Iterator dla kontera przechowujacego obiekty gry,

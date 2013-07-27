@@ -25,6 +25,7 @@ import objects.Enemy;
 import objects.GameObject;
 import objects.Player;
 import util.Factory;
+import util.ImageName;
 
 
 public class LevelLoader {
@@ -217,7 +218,7 @@ public class LevelLoader {
         }
 
         //Pobranie obrazka tla i ustawienie tla mapy
-        Image bg = ImageLoader.loadImage("bg_big3.jpg");
+        Image bg = ImageLoader.loadImage(ImageName.LEVEL_BACKGROUND);
         map.setBackground(bg);
 
         //Wstawienie graca
@@ -244,10 +245,8 @@ public class LevelLoader {
         GameObject object = (GameObject) getGameObject(classInfo).clone();
         if (object != null) {
 			// ustawienie obiektu w okreslonym punkcie mapy
-			object.setX(Level.fieldsToPixels(positionX) - object.getWidth()
-					+ Level.FIELD_SIZE);
-			object.setY(Level.fieldsToPixels(positionY) - object.getHeight()
-					+ Level.FIELD_SIZE);
+			object.setX(Level.fieldsToPixels(positionX) - object.getWidth()	+ Level.FIELD_SIZE);
+			object.setY(Level.fieldsToPixels(positionY) - object.getHeight() + Level.FIELD_SIZE);
             // dodanie obiektu do mapy
             map.addGameObject(object);
         }
