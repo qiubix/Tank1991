@@ -210,11 +210,11 @@ public class View implements Observer{
         
         if(component instanceof Level){
             window.requestFocus();
-            model.setPaused(false);
+            model.resumeGame();
         }
         else{
             component.requestFocus();
-            model.setPaused(true);
+            model.resumeGame();
             
         }
         
