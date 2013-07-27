@@ -52,7 +52,6 @@ public class Controller implements Observer {
         for (int i = 0; i < actions.length; i++) {
             actions[i] = new GameAction();
         }
-
     }
 
     private void initKeyboard() {
@@ -70,30 +69,28 @@ public class Controller implements Observer {
         return actions[action.ordinal()];
     }
 
+    private boolean keyPressed(Keys key) {
+        return getAction(key).isPressed();
+    }
+
     //TODO: Zmienic nazwe funkcji, rozbic na mniejsze, usunac duplikaty kodu
     public void getEvents() {
         boolean playerIsAlive = !model.getPlayer().isDead();
-        if (getAction(Keys.EXIT).isPressed()) {
-            //view.getMainMenu().setIsStarted(!model.isGameOver());
-            //view.toggleContext(view.getMainMenu());
-
-            if (model.getGameState() == GameState.LEVEL_UP) {
+        if (keyPressed(Keys.EXIT)) {
+            if (getGameState() == GameState.LEVEL_UP) {
                 model.loadNextLevel();
-                view.toggleContext(model.getLevel());
-            } else if (!playerIsAlive && !model.isGameOver()) {
+                switchToLevel();
+            } else if (!playerIsAlive && !isGameOver()) {
                 model.reloadLevel();
-                view.toggleContext(model.getLevel());
+                switchToLevel();
             } else {
-                view.getMainMenu().setIsStarted(!model.isGameOver());
-                view.toggleContext(view.getMainMenu());
+                view.getMainMenu().setIsStarted(!isGameOver());
+                switchToMainMenu();
             }
-            
             keyboard.reset();
         }
-        if (getAction(Keys.PAUSE).isPressed()) {
-
-            view.toggleContext(view.getMainMenu());
-
+        if (keyPressed(Keys.PAUSE)) {
+            switchToMainMenu();
             keyboard.reset();
         }
         if (!model.isPaused()) {
@@ -103,22 +100,39 @@ public class Controller implements Observer {
         }
     }
 
+    private boolean isGameOver() {
+        return model.isGameOver();
+    }
+
+    private GameState getGameState() {
+        return model.getGameState();
+    }
+
+    private void switchToLevel() {
+        view.toggleContext(model.getLevel());
+    }
+
+    private void switchToMainMenu() {
+        view.toggleContext(view.getMainMenu());
+    }
+
     //TODO: Remove duplicates, extract new methods
     private void movePlayer() {
-        if (getAction(Keys.LEFT).isPressed()) {
+        if (keyPressed(Keys.LEFT)) {
             movePlayerLeft();
         }
-        if (getAction(Keys.RIGHT).isPressed()) {
+        if (keyPressed(Keys.RIGHT)) {
             movePlayerRight();
         }
-        if (getAction(Keys.UP).isPressed()) {
+        if (keyPressed(Keys.UP)) {
             movePlayerUp();
         }
-        if (getAction(Keys.DOWN).isPressed()) {
+        if (keyPressed(Keys.DOWN)) {
             movePlayerDown();
         }
     }
 
+    //TODO: Move implementation to Tank class
     private void movePlayerLeft() {
         Player player = model.getPlayer();
         float velocityX = 0;
@@ -138,6 +152,7 @@ public class Controller implements Observer {
         player.setVelocityY(velocityY);
     }
 
+    //TODO: Move implementation to Tank class
     private void movePlayerRight() {
         Player player = model.getPlayer();
         float velocityX = 0;
@@ -157,6 +172,7 @@ public class Controller implements Observer {
         player.setVelocityY(velocityY);
     }
 
+    //TODO: Move implementation to Tank class
     private void movePlayerUp() {
         Player player = model.getPlayer();
         float velocityX = 0;
@@ -176,6 +192,7 @@ public class Controller implements Observer {
         player.setVelocityY(velocityY);
     }
 
+    //TODO: Move implementation to Tank class
     private void movePlayerDown() {
         Player player = model.getPlayer();
         float velocityX = 0;
@@ -258,23 +275,7 @@ public class Controller implements Observer {
         }
     }
 
-    private void turnEnemyDown(DynamicObject object) {
-        float velocityX = 0;
-        float velocityY = 0;
-
-        object.setVelocityX(0);
-        if (object.getY() + object.getHeight() >= view.getScreen().getHeight()) {
-            object.setVelocityY(0);
-        } else {
-            velocityY += ((Enemy) object).getSpeed();
-            if (((Enemy) object).isTurning()) {
-                GamePhysics.alignObject(model.getLevel(), (Enemy) object);
-            }
-        }
-        object.setVelocityX(velocityX);
-        object.setVelocityY(velocityY);
-    }
-
+    //TODO: Move implementation to Tank class
     private void turnEnemyUp(DynamicObject object) {
         float velocityX = 0;
         float velocityY = 0;
@@ -292,6 +293,25 @@ public class Controller implements Observer {
         object.setVelocityY(velocityY);
     }
 
+    //TODO: Move implementation to Tank class
+    private void turnEnemyDown(DynamicObject object) {
+        float velocityX = 0;
+        float velocityY = 0;
+
+        object.setVelocityX(0);
+        if (object.getY() + object.getHeight() >= view.getScreen().getHeight()) {
+            object.setVelocityY(0);
+        } else {
+            velocityY += ((Enemy) object).getSpeed();
+            if (((Enemy) object).isTurning()) {
+                GamePhysics.alignObject(model.getLevel(), (Enemy) object);
+            }
+        }
+        object.setVelocityX(velocityX);
+        object.setVelocityY(velocityY);
+    }
+
+    //TODO: Move implementation to Tank class
     private void turnEnemyRight(DynamicObject object) {
         float velocityX = 0;
         float velocityY = 0;
@@ -309,6 +329,7 @@ public class Controller implements Observer {
         object.setVelocityY(velocityY);
     }
 
+    //TODO: Move implementation to Tank class
     private void turnEnemyLeft(DynamicObject object) {
         float velocityX = 0;
         float velocityY = 0;
@@ -358,7 +379,7 @@ public class Controller implements Observer {
         }
 
         private void resumeGame() {
-            view.toggleContext(model.getLevel());
+            switchToLevel();
             model.resumeGame();
         }
 
