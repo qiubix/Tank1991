@@ -1,19 +1,7 @@
-/**
- * Bullet.java
- * @author Kari
- */
-
-
-
 package objects;
 
 import graphics.Graphic;
 
-
-/**
- * Klasa pocisku
- * @author Kari
- */
 public class Bullet extends DynamicObject{
 
     private static final float SPEED = .6f;

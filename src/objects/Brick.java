@@ -1,9 +1,3 @@
-/**
- * Brick.java
- * @author Kari
- */
-
-
 package objects;
 
 import graphics.Graphic;

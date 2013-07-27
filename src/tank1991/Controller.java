@@ -69,12 +69,6 @@ public class Controller implements Observer {
         keyboard.mapToKey(getAction(Keys.SHOOT), KeyEvent.VK_Z);
     }
 
-    /**
-     * Pobranie akcji zwiazanej z danym przyciskiem
-     *
-     * @param action przycisk
-     * @return akcja zwiazana z przyciskiem
-     */
     private GameAction getAction(Keys action) {
         return actions[action.ordinal()];
     }
@@ -269,15 +263,8 @@ public class Controller implements Observer {
         enemiesDecide();
     }
 
-    /**
-     * Klasa nasluchuje obiekty zdarzen generowane w menu glownym gry.
-     */
     class MainMenuListener implements ActionListener {
 
-        /**
-         * Funkcja odpowiada za reakcje menu na zdarzenia.
-         * @param e przechwycone zdarzenie
-         */
         @Override
         public void actionPerformed(ActionEvent e) {
             switch (e.getActionCommand()) {
