@@ -1,19 +1,9 @@
-/**
- * Model.java
- * @author Kari
- */
-
-
-
 package tank1991;
 
 import java.util.Iterator;
 import level.Level;
 import level.LevelLoader;
-import objects.DynamicObject;
-import objects.Eagle;
-import objects.Enemy;
-import objects.Tank;
+import objects.*;
 import util.Counter;
 import util.Observed;
 
@@ -28,172 +18,125 @@ public class Model extends Observed{
     private static final int LIVES = 3;
     private static int ENEMIES_NUMBER = 10; 
     private boolean isPaused;
-    
-    /** Przechowuje aktualny poziom     */
-    private Level map;    
-    
-    /** Zarzadca poziomow gry. Pozwala wczytywac nowe poziomy i nimi zarzadza    */
-    private LevelLoader levelManager;
-    
-    /** Obsluga fizyki gry - m.in. zderzenia obiektow     */
+
+    private Level map;   /* TODO: Change name */
+    private LevelLoader levelManager;   /* TODO: Change name */
     private GamePhysics physics;
-    
-    /** Stan rozgrywki     */
     private GameState gameState;
     
-    /** Mozliwe stany gry     */
     public enum GameState{
         PLAY, LOSS, WIN, LEVEL_UP
     }
     
-    /** licznik zyc bohatera */
     public Counter lifesCounter;
-    
-    /** licznik wrogow, ktorych nalezy pokonac, alby przejsc na nastepny poziom */
+
+    /* TODO: Improve mechanism of counting enemies */
     public Counter enemiesCounter;
-    
-    /** Licznik poziomow */
+    private int enemiesOnMap;
+
     public Counter levelCounter;
-    
-    /** Licznik punktow gracza */
     public Counter pointCounter;
     
-    /** Szerokosc ekranu w pikselach */
     private int screenWidth;
-    /** Wysokosc ekranu w pikselach */
     private int screenHeight;
     
 
     public Model(){
+        initModel();
+        startGame();
+    }
+
+    private void initModel() {
         levelManager = new LevelLoader();
         physics = new GamePhysics();
+        initCounters();
+        pauseGame();
+    }
+
+    private void initCounters() {
         levelCounter = new Counter();
         lifesCounter = new Counter();
         enemiesCounter = new Counter();
         pointCounter = new Counter();
-        
-        setPaused(true);
-        startGame();
     }
-    
-    /**
-     * Reset licznikow i poziomu, potrzebny przy kazdym rozpoczeciu gry
-     */
+
     public final void startGame(){
         setGameState(gameState.PLAY);
         levelManager.reset();
         loadNextLevel();
+        resetCounters();
+    }
+
+    private void resetCounters() {
         levelCounter.set(levelManager.getLevelNumber());
         lifesCounter.set(LIVES);
         enemiesCounter.set(ENEMIES_NUMBER);
     }
-    
-    /**
-     * Ustawia liczbe wrogow, ktorych trzeba pokonac, zeby ukonczyc poziom
-     * @param count nowa liczba wrogow
-     */
+
     public static void setEnemiesCount(int count){
         ENEMIES_NUMBER = count;
     }
-    
-    /**
-     * Pobieranie szerokosci ekranu
-     * @return szerokosc ekranu w pikselach
-     */
+
     public int getScreenWidth(){
         return screenWidth;
     }
-    
-    /**
-     * Pobieranie wysokosci ekranu
-     * @return wysokosc ekranu w pikselach 
-     */
+
     public int getScreenHeight(){
         return screenHeight;
     }
-    
-    /**
-     * Ustawianie szerokosci ekranu (zmiennej przechowujacej ta szerokosc)
-     * @param screenWidth ustawia zmienna screenWidth
-     */
+
     public void setScreenWidth(int screenWidth){
         this.screenWidth = screenWidth;
     }
-    
-    /**
-     * Ustawienie zmiennej przechowujacej wysokosc ekranu
-     * @param screenHeight nowa wysokosc ekranu
-     */
+
     public void setScreenHeight(int screenHeight){
         this.screenHeight = screenHeight;
     }
-    
-    /**
-     * Informacja o stanie pauzy
-     * @return true jesli gra jest zatrzymana
-     */
-    public boolean isPaused(){
+
+    public boolean isPaused() {
         return isPaused;
     }
-    
-    /**
-     * Przelaczenie trybu pauzy
-     * @param paused true powoduje przelaczenie gry w tryb pauzy
-     */
-    public final void setPaused(boolean paused){
-        this.isPaused = paused;
+
+    public void pauseGame() {
+        isPaused = true;
     }
-    
-    /**
-     * Sprawdzenie stanu gry
-     * @return aktualny stan gry ( gra, wygrana/przegrana, nastepny poziom ) 
-     */
+
+    public void resumeGame() {
+        isPaused = false;
+    }
+
     public GameState getGameState(){
         return gameState;
     }
-    
-    /**
-     * Ustawienie stanu rozgrywki
-     * @param gameState nowy stan rozgrywki
-     */
+
     public void setGameState(GameState gameState){
         this.gameState = gameState;
     }
     
-    /**
-     * Sprawdzenie konca gry
-     * @return true jesli gra sie zakonczyla
-     */
+
     public boolean isGameOver(){
         return gameState == GameState.WIN || gameState == GameState.LOSS;
     }
-    
-    /**
-     * Pobieranie mapy aktualnego poziomu
-     * @return 
-     */
+
     public Level getLevel(){
         return map;
     }
+
+    public Player getPlayer() {
+        return map.getPlayer();
+    }
     
-    /**
-     * Funkcja ustawia status nastepnego poziomu (koniec gry/ladowanie kolejnej
-     * mapy).
-     */
+    /* TODO: Change name */
     public void nextLevel() {
         setGameState((levelManager.isNextLevel()) ? gameState.LEVEL_UP : gameState.WIN);
     }
-        
-    /**
-     * Przeladowanie aktualnego levelu
-     */
+
+
     public void reloadLevel(){
         map = levelManager.reloadLevel();
     }
-    
-    /**
-     * Wczytanie nastepnego poziomu, reset licznika wrogow, ustawienie stanu rozgrywki
-     */
+
+
     public void loadNextLevel(){
         map = levelManager.loadNextLevel();
         enemiesCounter.set(ENEMIES_NUMBER);
@@ -235,20 +178,21 @@ public class Model extends Observed{
                 else if(object instanceof Eagle){
                 }
             }
-            if(enemiesCounter.get() > 2 && enemiesOnMap < 3){
-                levelManager.addNewEnemy(map, Enemy.class);
-            }
-            
+            addNewEnemies(enemiesOnMap);
         }
         signalToObservers();
     }
 
-	private void updatePlayerPhysics(long elapsedTime) {
-		//aktualizacja fizyki gracza
+    private void updatePlayerPhysics(long elapsedTime) {
 		physics.update(this, map.getPlayer(), elapsedTime);
 		if(map.getPlayer().isShooting()){
 		    physics.update(this, map.getPlayer().getBullet(), elapsedTime);
 		}
 	}
-    
+
+    private void addNewEnemies(int enemiesOnMap) {
+        if(enemiesCounter.get() > 2 && enemiesOnMap < 3){
+            levelManager.addNewEnemy(map, Enemy.class);
+        }
+    }
 }

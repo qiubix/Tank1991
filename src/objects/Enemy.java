@@ -207,12 +207,7 @@ public class Enemy extends Tank{
                 }
             }
     }
-    
-    
-    
-    /**
-     * Aktywacja czolgu przeciwnika
-     */
+
     @Override
     public void activate() {
         if (!active) {
@@ -226,7 +221,7 @@ public class Enemy extends Tank{
      * Reakcja czolgu na zderzenie w poziomie
      */
     @Override
-    public void collideHorizontal(){
+    public void reactToHorizontalCollision(){
 //        setVelocityX(-getVelocityX());
         switch(random.nextInt(4)){
                 case 0: decision = Decision.TURN_DOWN; break;
@@ -241,7 +236,7 @@ public class Enemy extends Tank{
      * Reakcja czolgu na zderzenie w pionie
      */
     @Override
-    public void collideVertical(){
+    public void reactToVerticalCollision(){
 //        setVelocityY(-getVelocityY());
         switch(random.nextInt(4)){
                 case 0: decision = Decision.TURN_DOWN; break;

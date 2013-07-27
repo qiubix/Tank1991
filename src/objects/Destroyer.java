@@ -1,9 +1,3 @@
-/**
- * Destroyer.java
- * @author Kari
- */
-
-
 package objects;
 
 import graphics.Animation;
@@ -14,7 +8,6 @@ import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
-
 
 /**
  * Klasa reprezentujaca wrogi czolg typu Niszczyciel. Strzela szybciej i potrzeba
@@ -30,8 +23,6 @@ public class Destroyer extends Enemy{
         return DestroyerFactory.create();
     }
     
-    
-    //<editor-fold defaultstate="collapsed" desc="Fabryka wrogow - Niszczycieli">
     /**
      * Klasa odpowiadajaca za zaladowanie obrazkow i utworzenie z nich animacji wroga
      * Posiada metode pozwalajaca utworzyc nowy obiekt wroga
@@ -57,8 +48,7 @@ public class Destroyer extends Enemy{
         public static GameObject create(){
             return new Destroyer(enemyAnimation); 
         }
-    }//</editor-fold>
-    
+    }
     
     /**
      * Sklonowanie obiektu wrogiego czolgu

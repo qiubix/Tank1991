@@ -34,14 +34,14 @@ public class Bullet extends DynamicObject{
     
    
     @Override
-    public void collideHorizontal(){
+    public void reactToHorizontalCollision(){
         setVelocityX(0);
         tank.tankShoots(false);
     }
     
     
     @Override
-    public void collideVertical(){
+    public void reactToVerticalCollision(){
         setVelocityY(0);
         tank.tankShoots(false);
     }

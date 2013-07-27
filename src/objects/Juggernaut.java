@@ -34,9 +34,7 @@ public class Juggernaut extends Enemy{
     public static GameObject create(){
         return JuggernautFactory.create();
     }
-    
-    
-    //<editor-fold defaultstate="collapsed" desc="Fabryka wrogow - Niepowstrzymana sila">
+
     /**
      * Klasa odpowiadajaca za zaladowanie obrazkow i utworzenie z nich animacji wroga
      * Posiada metode pozwalajaca utworzyc nowy obiekt wroga
@@ -62,7 +60,7 @@ public class Juggernaut extends Enemy{
         public static GameObject create(){
             return new Juggernaut(enemyAnimation); 
         }
-    }//</editor-fold>
+    }
     
     
     /**

@@ -1,9 +1,3 @@
-/**
- * Timer.java
- * @author Kari
- */
-
-
 package util;
 
 
@@ -18,13 +12,7 @@ public class Timer {
      * [milisekundy]
      */
     private long currentTime;
-    
-    /**
-     * Czas, ktory uplynal miedzy kolejnymi pomiarami
-     */
-    private long elapsedTime;
-    
-    
+
     /**
      * Konstruktor klasy Timer, ktory jednoczesnie rozpoczyna
      * odmierzanie czasu
@@ -32,8 +20,7 @@ public class Timer {
     public Timer(){
         currentTime = getTime();
     }
-    
-    
+
     /**
      * Funkcja pobierajaca aktualny czas
      * @return 
@@ -41,15 +28,13 @@ public class Timer {
     public final long getTime(){
         return System.currentTimeMillis();
     }
-    
-    
-    
+
     /**
      * Tykniecie zegara
      * @return czas w milisekundach od poprzedniego odmierzenia
      */
     public long tick(){
-        elapsedTime = getTime() - currentTime;
+        long elapsedTime = getTime() - currentTime;
         currentTime += elapsedTime;
         return elapsedTime;
     }

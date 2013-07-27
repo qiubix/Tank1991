@@ -127,7 +127,7 @@ public class Player extends Tank{
      * Reakcja na kolizje w poziomie
      */
     @Override
-    public void collideHorizontal(){
+    public void reactToHorizontalCollision(){
         setVelocityX(0);
     }
     
@@ -135,7 +135,7 @@ public class Player extends Tank{
      * Reakcja na kolizje w pionie
      */
     @Override
-    public void collideVertical(){
+    public void reactToVerticalCollision(){
         setVelocityY(0);
     }
     

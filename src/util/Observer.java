@@ -1,11 +1,4 @@
-/**
- * Observer.java
- * @author Kari
- */
-
-
 package util;
-
 
 /**
  * Wzorzec projektowy Obserwator. 

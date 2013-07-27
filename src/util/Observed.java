@@ -1,9 +1,3 @@
-/**
- * Observed.java
- * @author Kari
- */
-
-
 package util;
 
 import java.util.LinkedList;

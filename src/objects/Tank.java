@@ -245,7 +245,7 @@ public class Tank extends DynamicObject{
      * @see objects.Enemy
      */
     @Override
-    public void collideHorizontal(){
+    public void reactToHorizontalCollision(){
         setVelocityX(-getVelocityX());
     }
     
@@ -255,7 +255,7 @@ public class Tank extends DynamicObject{
      * @see objects.Enemy
      */
     @Override
-    public void collideVertical(){
+    public void reactToVerticalCollision(){
         setVelocityY(-getVelocityY());
     }
     

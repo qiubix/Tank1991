@@ -1,8 +1,3 @@
-/**
- * Factory.java
- * @author Kari
- */
-
 package util;
 
 

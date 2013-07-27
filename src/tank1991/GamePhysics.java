@@ -41,9 +41,9 @@ public class GamePhysics {
                     //Nastapilo zderzenie w poziomie
                     if (object instanceof Enemy) {
 //                        System.out.println("wrog");
-                        ((Enemy) object).collideVertical();
+                        ((Enemy) object).reactToVerticalCollision();
                     } else {
-                        object.collideVertical();
+                        object.reactToVerticalCollision();
                     }
                     //Sprawdzenie, czy obiekt jest kula, jesli tak, to niszczy obiekt, 
                     //w ktory trafil, jesli jest zniszczalny
@@ -53,7 +53,7 @@ public class GamePhysics {
                 }
             } else {
                 //Obiekt poza ekranem (w poziomie). Wywolanie akcji dla zderzenia w poziomie
-                object.collideHorizontal();
+                object.reactToHorizontalCollision();
             }
 
             //Zmiana wspolrzednej pionowej y.
@@ -75,9 +75,9 @@ public class GamePhysics {
                     //Nastapilo zderzenie w pionie
                     if (object instanceof Enemy) {
 //                        System.out.println("wrog");
-                        ((Enemy) object).collideVertical();
+                        ((Enemy) object).reactToVerticalCollision();
                     } else {
-                        object.collideVertical();
+                        object.reactToVerticalCollision();
                     }
                     //collisionVertical(object);
                     //Sprawdzenie, czy obiekt jest kula, jesli tak, to niszczy obiekt, 
@@ -87,13 +87,13 @@ public class GamePhysics {
                     }
                 }
             } else {
-                object.collideVertical();
+                object.reactToVerticalCollision();
             }
             
             DynamicObject collidingObject = getCollidingObject(model.getLevel(), object);
             if(collidingObject != null){
                 if(dx != 0){
-                    object.collideHorizontal();
+                    object.reactToHorizontalCollision();
                     if(object instanceof Bullet && collidingObject instanceof Enemy){
                         if (!(((Bullet) object).getTank() instanceof Enemy)) {
                             ((Enemy) collidingObject).setState(Tank.State.DEAD);
@@ -106,12 +106,12 @@ public class GamePhysics {
                         model.setGameState(Model.GameState.LOSS);
                     }
                     if(object instanceof Bullet && collidingObject instanceof Bullet){
-                        ((Bullet)object).collideHorizontal();
-                        ((Bullet)collidingObject).collideHorizontal();
+                        ((Bullet)object).reactToHorizontalCollision();
+                        ((Bullet)collidingObject).reactToHorizontalCollision();
                     }
                 }
                 if(dy != 0){
-                    object.collideVertical();
+                    object.reactToVerticalCollision();
                     if(object instanceof Bullet && collidingObject instanceof Enemy){
                         if (!(((Bullet) object).getTank() instanceof Enemy)) {
                             ((Enemy) collidingObject).setState(Tank.State.DEAD);
@@ -129,8 +129,8 @@ public class GamePhysics {
                         model.setGameState(Model.GameState.LOSS);
                     }
                     if(object instanceof Bullet && collidingObject instanceof Bullet){
-                        ((Bullet)object).collideVertical();
-                        ((Bullet)collidingObject).collideVertical();
+                        ((Bullet)object).reactToVerticalCollision();
+                        ((Bullet)collidingObject).reactToVerticalCollision();
                     }
                 }
             }
@@ -247,19 +247,19 @@ public class GamePhysics {
     
     private void collisionVertical(DynamicObject object){
         if(object instanceof Enemy){
-            ((Enemy)object).collideVertical();
+            ((Enemy)object).reactToVerticalCollision();
         }
         else{
-            object.collideVertical();
+            object.reactToVerticalCollision();
         }
     }
     
     private void collisionHorizontal(DynamicObject object){
         if(object instanceof Enemy){
-            ((Enemy)object).collideHorizontal();
+            ((Enemy)object).reactToHorizontalCollision();
         }
         else{
-            object.collideHorizontal();
+            object.reactToHorizontalCollision();
         }
     }
     

@@ -1,8 +1,3 @@
-/**
- * PriorityList.java
- * @author Kari
- */
-
 package util;
 
 import java.util.ArrayList;
@@ -11,8 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
-
-
 
 /**
  * Lista priorytetowa. Obiekty przechowywane posiadaja priorytety, wedlug

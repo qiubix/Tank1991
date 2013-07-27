@@ -8,7 +8,4 @@ public class Brick extends DestroyableObject{
     public Brick(Graphic graphic){
         super(graphic);
     }
-    
-    
-    
 }

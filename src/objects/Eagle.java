@@ -1,10 +1,3 @@
-/**
- * Eagle.java
- * @author Kari
- */
-
-
-
 package objects;
 
 import graphics.Animation;
@@ -31,15 +24,18 @@ public class Eagle extends DynamicObject{
         super(animation);
         state = State.ALIVE;
     }
-    
-    
-    public State getState(){
-        return state;
+
+    public boolean isAlive() {
+        if(state == State.ALIVE) {
+            return true;
+        }
+        else {
+            return false;
+        }
     }
-    
-    
-    public void setState(State state){
-        this.state = state;
+
+    public void kill() {
+        state = State.DEAD;
     }
 
     @Override

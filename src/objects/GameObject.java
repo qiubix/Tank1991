@@ -1,8 +1,3 @@
-/**
- * GameObject.java
- * @author Kari
- */
-
 package objects;
 
 import graphics.Graphic;
@@ -11,9 +6,6 @@ import java.awt.Image;
 
 public class GameObject {
 
-    /**
-     * Przechowuje aktualna grafike obiektu
-     */
     protected Graphic graphic;
     
     private int positionX;
@@ -45,7 +37,6 @@ public class GameObject {
     public Object clone(){
         return new GameObject(graphic);
     }
-                    
 
     /**
      * @return the positionX
