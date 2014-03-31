@@ -8,6 +8,7 @@ public class Tank extends DynamicObject {
 
   public Tank() {
     baseVelocity = 1;
+    movementDirection = Direction.RIGHT;
     bullet = new Bullet();
     shooting = false;
   }
@@ -18,5 +19,12 @@ public class Tank extends DynamicObject {
 
   public boolean isShooting() {
     return shooting;
+  }
+
+  public void shoot() {
+    if (!shooting) {
+      shooting = true;
+      bullet.move(movementDirection);
+    }
   }
 }

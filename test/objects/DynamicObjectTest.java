@@ -42,6 +42,12 @@ public class DynamicObjectTest {
     assertEquals(0, dynamicObject.getVelocityY());
     assertEquals(DynamicObject.Direction.RIGHT, dynamicObject.movementDirection);
   }
+
+  @Test
+  public void shouldMoveInAnyDirection() throws Exception {
+    //TODO: implement
+  }
+
   @Test
   public void shouldMoveWithConstantSpeed() throws Exception {
     final int MOVEMENT_TIME = 10;

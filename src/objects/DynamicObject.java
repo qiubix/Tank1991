@@ -47,6 +47,15 @@ abstract class DynamicObject extends GameObject {
     this.velocityX = baseVelocity;
   }
 
+  public void move(Direction direction) {
+    switch (direction) {
+      case UP: moveUp(); break;
+      case DOWN: moveDown(); break;
+      case LEFT: moveLeft(); break;
+      case RIGHT: moveRight(); break;
+    }
+  }
+
   public void update(long elapsedTime) {
     int newPositionX = (int) (positionX + velocityX * elapsedTime);
     int newPositionY = (int) (positionY + velocityY * elapsedTime);

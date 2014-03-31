@@ -22,7 +22,30 @@ public class TankTest {
   }
 
   @Test
-  public void testIsShooting() throws Exception {
+  public void shouldFireBullet() throws Exception {
+    final int BULLET_VELOCITY = 2;
+    Tank tank = new Tank();
+    tank.movementDirection = DynamicObject.Direction.DOWN;
+    tank.shoot();
+    assertTrue(tank.isShooting());
+    assertEquals(0, tank.getBullet().getVelocityX());
+    assertEquals(BULLET_VELOCITY, tank.getBullet().getVelocityY());
+  }
+
+  @Test
+  public void shouldNotChangeDirectionOfBulletTryingToShootAgain() throws Exception {
+    final int BULLET_VELOCITY = 2;
+    Tank tank = new Tank();
+    tank.getBullet().moveDown();
+    tank.shooting = true;
+    tank.moveRight();
+    tank.shoot();
+    assertEquals(0, tank.getBullet().getVelocityX());
+    assertEquals(BULLET_VELOCITY, tank.getBullet().getVelocityY());
+  }
+
+  @Test
+  public void shouldNotFireBulletWhenAnotherIsAlreadyFlying() throws Exception {
     //TODO: implement
   }
 }
