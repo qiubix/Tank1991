@@ -25,5 +25,7 @@ abstract class DynamicObject extends GameObject {
   public void update(long elapsedTime) {
     int newPositionX = (int) (positionX + velocityX * elapsedTime);
     int newPositionY = (int) (positionY + velocityY * elapsedTime);
+    positionX = newPositionX;
+    positionY = newPositionY;
   }
 }

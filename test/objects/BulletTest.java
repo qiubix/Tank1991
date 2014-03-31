@@ -20,7 +20,7 @@ public class BulletTest {
   public void shouldMoveUp() throws Exception {
     Bullet bullet = new Bullet();
     bullet.moveUp();
-    assertEquals(1, bullet.getVelocityY());
+    assertEquals(-1, bullet.getVelocityY());
     assertEquals(0, bullet.getVelocityX());
     assertEquals(GameObject.Direction.UP, bullet.movementDirection);
   }
@@ -29,7 +29,7 @@ public class BulletTest {
   public void shouldMoveDown() throws Exception {
     Bullet bullet = new Bullet();
     bullet.moveDown();
-    assertEquals(-1, bullet.getVelocityY());
+    assertEquals(1, bullet.getVelocityY());
     assertEquals(0, bullet.getVelocityX());
     assertEquals(GameObject.Direction.DOWN, bullet.movementDirection);
   }

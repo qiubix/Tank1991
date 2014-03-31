@@ -7,14 +7,14 @@ public class Bullet extends DynamicObject {
   public void moveUp() {
     this.movementDirection = Direction.UP;
     this.velocityX = 0;
-    this.velocityY = baseVelocity;
+    this.velocityY = -baseVelocity;
   }
 
   @Override
   public void moveDown() {
     this.movementDirection = Direction.DOWN;
     this.velocityX = 0;
-    this.velocityY = -baseVelocity;
+    this.velocityY = baseVelocity;
   }
 
   @Override
