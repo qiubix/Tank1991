@@ -4,6 +4,9 @@ abstract class DynamicObject extends GameObject {
   protected int velocityX;
   protected int velocityY;
 
+  public enum Direction {
+    UP, DOWN, LEFT, RIGHT
+  }
   protected Direction movementDirection;
 
   public DynamicObject(boolean destroyable) {

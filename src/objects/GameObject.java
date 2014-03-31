@@ -7,10 +7,6 @@ abstract class GameObject {
   //FIXME: use Decorator pattern
   private boolean destroyable;
 
-  public enum Direction {
-    UP, DOWN, LEFT, RIGHT
-  }
-
   public GameObject(boolean destroyable) {
     this.destroyable = destroyable;
   }

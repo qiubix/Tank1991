@@ -24,7 +24,7 @@ public class BulletTest {
     bullet.moveUp();
     assertEquals(-1, bullet.getVelocityY());
     assertEquals(0, bullet.getVelocityX());
-    assertEquals(GameObject.Direction.UP, bullet.movementDirection);
+    assertEquals(DynamicObject.Direction.UP, bullet.movementDirection);
   }
 
   @Test
@@ -33,7 +33,7 @@ public class BulletTest {
     bullet.moveDown();
     assertEquals(1, bullet.getVelocityY());
     assertEquals(0, bullet.getVelocityX());
-    assertEquals(GameObject.Direction.DOWN, bullet.movementDirection);
+    assertEquals(DynamicObject.Direction.DOWN, bullet.movementDirection);
   }
 
   @Test
@@ -42,7 +42,7 @@ public class BulletTest {
     bullet.moveLeft();
     assertEquals(-1, bullet.getVelocityX());
     assertEquals(0, bullet.getVelocityY());
-    assertEquals(GameObject.Direction.LEFT, bullet.movementDirection);
+    assertEquals(DynamicObject.Direction.LEFT, bullet.movementDirection);
   }
 
   @Test
@@ -51,6 +51,6 @@ public class BulletTest {
     bullet.moveRight();
     assertEquals(1, bullet.getVelocityX());
     assertEquals(0, bullet.getVelocityY());
-    assertEquals(GameObject.Direction.RIGHT, bullet.movementDirection);
+    assertEquals(DynamicObject.Direction.RIGHT, bullet.movementDirection);
   }
 }

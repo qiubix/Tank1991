@@ -11,7 +11,7 @@ public class DynamicObjectTest {
     dynamicObject.moveUp();
     assertEquals(0, dynamicObject.getVelocityX());
     assertTrue(0 > dynamicObject.getVelocityY());
-    assertEquals(GameObject.Direction.UP, dynamicObject.movementDirection);
+    assertEquals(DynamicObject.Direction.UP, dynamicObject.movementDirection);
   }
 
   @Test
@@ -20,7 +20,7 @@ public class DynamicObjectTest {
     dynamicObject.moveDown();
     assertEquals(0, dynamicObject.getVelocityX());
     assertTrue(0 < dynamicObject.getVelocityY());
-    assertEquals(GameObject.Direction.DOWN, dynamicObject.movementDirection);
+    assertEquals(DynamicObject.Direction.DOWN, dynamicObject.movementDirection);
   }
 
   @Test
@@ -29,7 +29,7 @@ public class DynamicObjectTest {
     dynamicObject.moveLeft();
     assertTrue(0 > dynamicObject.getVelocityX());
     assertEquals(0, dynamicObject.getVelocityY());
-    assertEquals(GameObject.Direction.LEFT, dynamicObject.movementDirection);
+    assertEquals(DynamicObject.Direction.LEFT, dynamicObject.movementDirection);
   }
 
   @Test
@@ -38,7 +38,7 @@ public class DynamicObjectTest {
     dynamicObject.moveRight();
     assertTrue(0 < dynamicObject.getVelocityX());
     assertEquals(0, dynamicObject.getVelocityY());
-    assertEquals(GameObject.Direction.RIGHT, dynamicObject.movementDirection);
+    assertEquals(DynamicObject.Direction.RIGHT, dynamicObject.movementDirection);
   }
   @Test
   public void shouldMoveWithConstantSpeed() throws Exception {
@@ -58,7 +58,7 @@ public class DynamicObjectTest {
     dynamicObject.moveDown();
     assertEquals(0, dynamicObject.getVelocityX());
     assertTrue(0 < dynamicObject.getVelocityY());
-    assertEquals(GameObject.Direction.DOWN, dynamicObject.movementDirection);
+    assertEquals(DynamicObject.Direction.DOWN, dynamicObject.movementDirection);
   }
 
   @Test
@@ -68,6 +68,6 @@ public class DynamicObjectTest {
     dynamicObject.moveLeft();
     assertTrue(0 > dynamicObject.getVelocityX());
     assertEquals(0, dynamicObject.getVelocityY());
-    assertEquals(GameObject.Direction.LEFT, dynamicObject.movementDirection);
+    assertEquals(DynamicObject.Direction.LEFT, dynamicObject.movementDirection);
   }
 }
