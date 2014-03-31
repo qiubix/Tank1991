@@ -5,6 +5,8 @@ import static org.junit.Assert.*;
 
 public class DynamicObjectTest {
 
+  //REVIEW: maybe tests should be set up
+
   @Test
   public void shouldMoveUp() throws Exception {
     DynamicObject dynamicObject = new Bullet();
@@ -42,13 +44,15 @@ public class DynamicObjectTest {
   }
   @Test
   public void shouldMoveWithConstantSpeed() throws Exception {
+    final int MOVEMENT_TIME = 10;
+    final int BASE_VELOCITY = 2;
     DynamicObject dynamicObject = new Bullet();
     assertEquals(0, dynamicObject.getPositionX());
     assertEquals(0, dynamicObject.getPositionY());
     dynamicObject.moveDown();
-    dynamicObject.update(10);
+    dynamicObject.update(MOVEMENT_TIME);
     assertEquals(0, dynamicObject.getPositionX());
-    assertEquals(10, dynamicObject.getPositionY());
+    assertEquals(MOVEMENT_TIME * BASE_VELOCITY, dynamicObject.getPositionY());
   }
 
   @Test
