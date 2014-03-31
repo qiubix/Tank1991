@@ -9,10 +9,6 @@ abstract class DynamicObject extends GameObject {
   }
   protected Direction movementDirection;
 
-  public DynamicObject(boolean destroyable) {
-    super(destroyable);
-  }
-
   public int getVelocityX() {
     return velocityX;
   }

@@ -8,9 +8,8 @@ public class Tank extends DynamicObject {
 
   protected boolean shooting;
 
-  public Tank(boolean destroyable) {
-    super(destroyable);
-    bullet = new Bullet(false);
+  public Tank() {
+    bullet = new Bullet();
     shooting = false;
   }
 
