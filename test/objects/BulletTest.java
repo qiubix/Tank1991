@@ -6,6 +6,8 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class BulletTest {
+
+  //REVIEW: maybe tests should be set up
   @Before
   public void setUp() throws Exception {
 
@@ -18,7 +20,7 @@ public class BulletTest {
 
   @Test
   public void shouldMoveUp() throws Exception {
-    Bullet bullet = new Bullet();
+    Bullet bullet = new Bullet(true);
     bullet.moveUp();
     assertEquals(-1, bullet.getVelocityY());
     assertEquals(0, bullet.getVelocityX());
@@ -27,7 +29,7 @@ public class BulletTest {
 
   @Test
   public void shouldMoveDown() throws Exception {
-    Bullet bullet = new Bullet();
+    Bullet bullet = new Bullet(true);
     bullet.moveDown();
     assertEquals(1, bullet.getVelocityY());
     assertEquals(0, bullet.getVelocityX());
@@ -36,7 +38,7 @@ public class BulletTest {
 
   @Test
   public void shouldMoveLeft() throws Exception {
-    Bullet bullet = new Bullet();
+    Bullet bullet = new Bullet(true);
     bullet.moveLeft();
     assertEquals(-1, bullet.getVelocityX());
     assertEquals(0, bullet.getVelocityY());
@@ -45,7 +47,7 @@ public class BulletTest {
 
   @Test
   public void shouldMoveRight() throws Exception {
-    Bullet bullet = new Bullet();
+    Bullet bullet = new Bullet(true);
     bullet.moveRight();
     assertEquals(1, bullet.getVelocityX());
     assertEquals(0, bullet.getVelocityY());

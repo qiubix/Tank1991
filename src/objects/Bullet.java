@@ -3,6 +3,10 @@ package objects;
 public class Bullet extends DynamicObject {
   private final int baseVelocity = 1;
 
+  public Bullet(boolean destroyable) {
+    super(destroyable);
+  }
+
   @Override
   public void moveUp() {
     this.movementDirection = Direction.UP;

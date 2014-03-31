@@ -7,7 +7,7 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldMoveUp() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
+    DynamicObject dynamicObject = new Bullet(true);
     dynamicObject.moveUp();
     assertEquals(0, dynamicObject.getVelocityX());
     assertTrue(0 > dynamicObject.getVelocityY());
@@ -16,7 +16,7 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldMoveDown() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
+    DynamicObject dynamicObject = new Bullet(true);
     dynamicObject.moveDown();
     assertEquals(0, dynamicObject.getVelocityX());
     assertTrue(0 < dynamicObject.getVelocityY());
@@ -25,7 +25,7 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldMoveLeft() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
+    DynamicObject dynamicObject = new Bullet(true);
     dynamicObject.moveLeft();
     assertTrue(0 > dynamicObject.getVelocityX());
     assertEquals(0, dynamicObject.getVelocityY());
@@ -34,7 +34,7 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldMoveRight() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
+    DynamicObject dynamicObject = new Bullet(true);
     dynamicObject.moveRight();
     assertTrue(0 < dynamicObject.getVelocityX());
     assertEquals(0, dynamicObject.getVelocityY());
@@ -42,7 +42,7 @@ public class DynamicObjectTest {
   }
   @Test
   public void shouldMoveWithConstantSpeed() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
+    DynamicObject dynamicObject = new Bullet(true);
     assertEquals(0, dynamicObject.getPositionX());
     assertEquals(0, dynamicObject.getPositionY());
     dynamicObject.moveDown();
@@ -53,7 +53,7 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldTurn90Degrees() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
+    DynamicObject dynamicObject = new Bullet(true);
     dynamicObject.moveRight();
     dynamicObject.moveDown();
     assertEquals(0, dynamicObject.getVelocityX());
@@ -63,7 +63,7 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldTurn180Degrees() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
+    DynamicObject dynamicObject = new Bullet(true);
     dynamicObject.moveRight();
     dynamicObject.moveLeft();
     assertTrue(0 > dynamicObject.getVelocityX());
