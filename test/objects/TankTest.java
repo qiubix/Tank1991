@@ -47,5 +47,7 @@ public class TankTest {
   @Test
   public void shouldNotFireBulletWhenAnotherIsAlreadyFlying() throws Exception {
     //TODO: implement
+    final int BULLET_VELOCITY = 2;
+    final int TANK_VELOCITY = 1;
   }
 }
