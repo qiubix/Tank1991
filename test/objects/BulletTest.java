@@ -9,11 +9,12 @@ public class BulletTest {
 
   private final int baseBulletVelocity = 2;
 
-  //REVIEW: maybe tests should be set up
   //REVIEW: maybe tests for movement are redundant, because this is already tested in DynamicObjectTest
+  private Bullet bullet;
+
   @Before
   public void setUp() throws Exception {
-
+    bullet = new Bullet();
   }
 
   @After
@@ -23,7 +24,6 @@ public class BulletTest {
 
   @Test
   public void shouldMoveUp() throws Exception {
-    Bullet bullet = new Bullet();
     bullet.moveUp();
     assertEquals(-baseBulletVelocity, bullet.getVelocityY());
     assertEquals(0, bullet.getVelocityX());
@@ -32,7 +32,6 @@ public class BulletTest {
 
   @Test
   public void shouldMoveDown() throws Exception {
-    Bullet bullet = new Bullet();
     bullet.moveDown();
     assertEquals(baseBulletVelocity, bullet.getVelocityY());
     assertEquals(0, bullet.getVelocityX());
@@ -41,7 +40,6 @@ public class BulletTest {
 
   @Test
   public void shouldMoveLeft() throws Exception {
-    Bullet bullet = new Bullet();
     bullet.moveLeft();
     assertEquals(-baseBulletVelocity, bullet.getVelocityX());
     assertEquals(0, bullet.getVelocityY());
@@ -50,7 +48,6 @@ public class BulletTest {
 
   @Test
   public void shouldMoveRight() throws Exception {
-    Bullet bullet = new Bullet();
     bullet.moveRight();
     assertEquals(baseBulletVelocity, bullet.getVelocityX());
     assertEquals(0, bullet.getVelocityY());

@@ -20,11 +20,6 @@ public class TankTest {
   }
 
   @Test
-  public void testGetBullet() throws Exception {
-    //TODO: implement
-  }
-
-  @Test
   public void shouldFireBullet() throws Exception {
     final int BULLET_VELOCITY = 2;
     tank.movementDirection = DynamicObject.Direction.DOWN;
