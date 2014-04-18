@@ -115,4 +115,12 @@ public class DynamicObjectTest {
     assertEquals(0, dynamicObject.getVelocityY());
     assertEquals(DynamicObject.Direction.LEFT, dynamicObject.movementDirection);
   }
+
+  @Test
+  public void shouldStopWhenColliding() throws Exception {
+    dynamicObject.moveRight();
+    dynamicObject.collide();
+    assertEquals(0, dynamicObject.getVelocityX());
+    assertEquals(0, dynamicObject.getVelocityY());
+  }
 }

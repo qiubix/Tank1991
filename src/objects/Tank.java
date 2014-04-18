@@ -27,4 +27,10 @@ public class Tank extends DynamicObject {
       bullet.move(movementDirection);
     }
   }
+
+  @Override
+  public void collide() {
+    velocityX = 0;
+    velocityY = 0;
+  }
 }
