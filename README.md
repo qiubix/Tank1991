@@ -1,4 +1,8 @@
 Tank1991
 ========
 
-Project for course PROZ ( event programming ) - tank game in Java
+Remake of a classic defense game.
+
+## Dependencies
+* junit 4.11
+* easymock
