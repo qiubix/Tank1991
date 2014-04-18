@@ -1,15 +1,25 @@
 package objects;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class DynamicObjectTest {
 
-  //REVIEW: maybe tests should be set up
+  private DynamicObject dynamicObject;
+
+  @Before
+  public void setUp() throws Exception {
+    dynamicObject = new Bullet();
+  }
+
+  @After
+  public void tearDown() throws Exception {
+  }
 
   @Test
   public void shouldMoveUp() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
     dynamicObject.moveUp();
     assertEquals(0, dynamicObject.getVelocityX());
     assertTrue(0 > dynamicObject.getVelocityY());
@@ -18,7 +28,6 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldMoveDown() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
     dynamicObject.moveDown();
     assertEquals(0, dynamicObject.getVelocityX());
     assertTrue(0 < dynamicObject.getVelocityY());
@@ -27,7 +36,6 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldMoveLeft() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
     dynamicObject.moveLeft();
     assertTrue(0 > dynamicObject.getVelocityX());
     assertEquals(0, dynamicObject.getVelocityY());
@@ -36,7 +44,6 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldMoveRight() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
     dynamicObject.moveRight();
     assertTrue(0 < dynamicObject.getVelocityX());
     assertEquals(0, dynamicObject.getVelocityY());
@@ -46,7 +53,6 @@ public class DynamicObjectTest {
   @Test
   public void shouldMoveInAnyDirection() throws Exception {
     //FIXME: remove duplication in tests
-    DynamicObject dynamicObject = new Bullet();
 
     dynamicObject.move(DynamicObject.Direction.UP);
     assertEquals(0, dynamicObject.getVelocityX());
@@ -72,7 +78,6 @@ public class DynamicObjectTest {
   @Test
   public void shouldChangePositionAfterUpdateIfMoving() throws Exception {
     final int MOVEMENT_TIME = 10;
-    DynamicObject dynamicObject = new Bullet();
     dynamicObject.velocityX = 1;
     dynamicObject.movementDirection = DynamicObject.Direction.RIGHT;
     int currentPositionX = dynamicObject.getPositionX();
@@ -85,7 +90,6 @@ public class DynamicObjectTest {
   public void shouldMoveWithConstantSpeed() throws Exception {
     final int MOVEMENT_TIME = 10;
     final int BASE_VELOCITY = 2;
-    DynamicObject dynamicObject = new Bullet();
     assertEquals(0, dynamicObject.getPositionX());
     assertEquals(0, dynamicObject.getPositionY());
     dynamicObject.moveDown();
@@ -96,7 +100,6 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldTurn90Degrees() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
     dynamicObject.moveRight();
     dynamicObject.moveDown();
     assertEquals(0, dynamicObject.getVelocityX());
@@ -106,7 +109,6 @@ public class DynamicObjectTest {
 
   @Test
   public void shouldTurn180Degrees() throws Exception {
-    DynamicObject dynamicObject = new Bullet();
     dynamicObject.moveRight();
     dynamicObject.moveLeft();
     assertTrue(0 > dynamicObject.getVelocityX());

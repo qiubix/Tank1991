@@ -8,8 +8,11 @@ import static org.junit.Assert.*;
 //TODO: figure out proper tests for tank class
 public class TankTest {
 
+  private Tank tank;
+
   @Before
   public void setUp() throws Exception {
+    tank = new Tank();
   }
 
   @After
@@ -24,7 +27,6 @@ public class TankTest {
   @Test
   public void shouldFireBullet() throws Exception {
     final int BULLET_VELOCITY = 2;
-    Tank tank = new Tank();
     tank.movementDirection = DynamicObject.Direction.DOWN;
     tank.shoot();
     assertTrue(tank.isShooting());
@@ -35,19 +37,11 @@ public class TankTest {
   @Test
   public void shouldNotChangeDirectionOfBulletTryingToShootAgain() throws Exception {
     final int BULLET_VELOCITY = 2;
-    Tank tank = new Tank();
     tank.getBullet().moveDown();
     tank.shooting = true;
     tank.moveRight();
     tank.shoot();
     assertEquals(0, tank.getBullet().getVelocityX());
     assertEquals(BULLET_VELOCITY, tank.getBullet().getVelocityY());
-  }
-
-  @Test
-  public void shouldNotFireBulletWhenAnotherIsAlreadyFlying() throws Exception {
-    //TODO: implement
-    final int BULLET_VELOCITY = 2;
-    final int TANK_VELOCITY = 1;
   }
 }
