@@ -1,12 +1,16 @@
 package core;
 
 import objects.Player;
+import org.easymock.EasyMock;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
+import static org.easymock.EasyMock.createMock;
+import static org.easymock.EasyMock.*;
+import static org.easymock.EasyMock.verify;
 
 public class ModelTest {
 
@@ -86,5 +90,16 @@ public class ModelTest {
     model.update(elapsedTime);
     assertEquals(playerPositionX, model.getPlayer().getPositionX());
     assertNotEquals(playerPositionY, model.getPlayer().getPositionY());
+  }
+
+	@Test
+  public void shouldUpdateAllGameObjects() throws Exception {
+    //TODO: check if all update methods called
+//    final long ELAPSED_TIME = 10;
+//    Model model = createMock(Model.class);
+//    model.update(ELAPSED_TIME);
+//    expectLastCall().times(1);
+//
+//    verify(model);
   }
 }
