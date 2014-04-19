@@ -35,4 +35,19 @@ public class ModelTest {
     assertEquals(PLAYER_STARTING_POSITION_Y, model.getPlayer().getPositionY());
     //TODO: finish test
   }
+
+  @Test
+  public void shouldInitLevel() throws Exception {
+    //TODO: should load first level from file and put proper objects on map
+  }
+
+  @Test
+  public void shouldReloadLevel() throws Exception {
+    //TODO: should reset level and put all objects in starting positions
+  }
+
+  @Test
+  public void shouldLoadNextLevel() throws Exception {
+    //TODO: should increase level counter and load next level from file
+  }
 }

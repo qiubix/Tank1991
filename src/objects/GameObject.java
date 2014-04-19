@@ -1,6 +1,6 @@
 package objects;
 
-abstract class GameObject {
+public abstract class GameObject {
   protected int positionX;
   protected int positionY;
 
