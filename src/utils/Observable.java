@@ -3,7 +3,7 @@ package utils;
 import java.util.LinkedList;
 import java.util.List;
 
-public abstract class Observed {
+public abstract class Observable {
 
   private List<Observer> observers = new LinkedList<Observer>();
 
@@ -21,7 +21,7 @@ public abstract class Observed {
 
   public void signalToObservers() {
     for (Observer o : observers) {
-      o.signal(this);
+      o.signal();
     }
   }
 }
