@@ -27,4 +27,14 @@ public class PlayerTest {
     assertEquals(POSITION_X, player.getPositionX());
     assertEquals(POSITION_Y, player.getPositionY());
   }
+
+  @Test
+  public void shoudCreatePlayer() {
+    final int POSITION_X = 10;
+    final int POSITION_Y = 20;
+    Player newPlayer = (Player) player.create();
+    assertNotNull(newPlayer);
+    assertEquals(POSITION_X, newPlayer.getPositionX());
+    assertEquals(POSITION_Y, newPlayer.getPositionY());
+  }
 }

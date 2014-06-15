@@ -33,4 +33,6 @@ public class Tank extends DynamicObject {
     velocityX = 0;
     velocityY = 0;
   }
+
+  //TODO: make tank factory
 }
