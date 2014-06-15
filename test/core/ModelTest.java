@@ -1,10 +1,12 @@
 package core;
 
+import objects.Player;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 public class ModelTest {
 
@@ -49,5 +51,37 @@ public class ModelTest {
   @Test
   public void shouldLoadNextLevel() throws Exception {
     //TODO: should increase level counter and load next level from file
+  }
+
+  @Test
+  public void shouldNotUpdateModelWhenGameIsPaused() {
+    assertEquals(GameState.PAUSE, model.getGameState());
+    Player player = model.getPlayer();
+    int playerPositionX = player.getPositionX();
+    int playerPositionY = player.getPositionY();
+    long elapsedTime = 10;
+    model.update(elapsedTime);
+    assertEquals(playerPositionX, model.getPlayer().getPositionX());
+    assertEquals(playerPositionY, model.getPlayer().getPositionY());
+  }
+
+  @Test
+  public void shouldUpdateModelWhenGameIsRunning() {
+    model.startGame();
+    assertEquals(GameState.RUNNING, model.getGameState());
+    Player player = model.getPlayer();
+    player.moveRight();
+    int playerPositionX = player.getPositionX();
+    int playerPositionY = player.getPositionY();
+    long elapsedTime = 10;
+    model.update(elapsedTime);
+    assertNotEquals(playerPositionX, model.getPlayer().getPositionX());
+    assertEquals(playerPositionY, model.getPlayer().getPositionY());
+    player.moveDown();
+    playerPositionX = player.getPositionX();
+    playerPositionY = player.getPositionY();
+    model.update(elapsedTime);
+    assertEquals(playerPositionX, model.getPlayer().getPositionX());
+    assertNotEquals(playerPositionY, model.getPlayer().getPositionY());
   }
 }

@@ -24,4 +24,10 @@ public class Model {
   public Player getPlayer() {
     return player;
   }
+
+  public void update(long elapsedTime) {
+    if(gameState != GameState.PAUSE) {
+      player.update(elapsedTime);
+    }
+  }
 }
