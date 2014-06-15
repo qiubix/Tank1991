@@ -28,9 +28,10 @@ public class GameObjectFactoryTest {
 
   }
 
+  //TODO: remove duplicate tests (PlayerTest.shouldCreatePlayer)
   @Test
   public void shouldCreatePlayer() throws Exception {
-    final int PLAYER_STARTING_POSITION_X = 20;
+    final int PLAYER_STARTING_POSITION_X = 10;
     final int PLAYER_STARTING_POSITION_Y = 20;
     Player player = factory.createPlayer();
     assertNotNull(player);

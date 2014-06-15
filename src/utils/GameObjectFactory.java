@@ -21,9 +21,7 @@ public class GameObjectFactory {
   }
 
   public Player createPlayer() {
-    Player newPlayer = new Player();
-    newPlayer.setPositionX(20);
-    newPlayer.setPositionY(20);
+    Player newPlayer = (Player) Player.create();
     return newPlayer;
   }
 
