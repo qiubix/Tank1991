@@ -35,7 +35,10 @@ public class ModelTest {
     assertEquals(GameState.RUNNING, model.getGameState());
     assertEquals(PLAYER_STARTING_POSITION_X, model.getPlayer().getPositionX());
     assertEquals(PLAYER_STARTING_POSITION_Y, model.getPlayer().getPositionY());
-    //TODO: finish test
+    assertEquals(1, model.getCurrentLevelNumber());
+    assertEquals(0, model.getPlayerPoints());
+    assertEquals(10, model.getEnemiesToBeat());
+    assertEquals(3, model.getPlayerLifes());
   }
 
   @Test
