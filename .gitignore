@@ -11,3 +11,7 @@ build/
 
 # IntelliJ IDEA files
 .idea/
+Tank1991.iml
+
+# gradle files
+.gradle/
