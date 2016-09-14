@@ -1,5 +1,6 @@
 package core;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -41,5 +42,17 @@ public class ViewTest {
   public void shouldUpdateLevelNumberOnModelChange() {
     View view = new View(model);
     MainWindow mainWindow = view.getMainWindow();
+
+    int currentLevelNumberInModel = model.getCurrentLevelNumber();
+    int currentLevelNumberDisplayed = mainWindow.getCurrentLevelNumber();
+    assertThat(currentLevelNumberDisplayed, equalTo(currentLevelNumberInModel));
+
+    final int newLevelNumber = 2;
+    model.setCurrentLevelNumber(newLevelNumber);
+
+    view.update(model, view);
+
+    currentLevelNumberDisplayed = mainWindow.getCurrentLevelNumber();
+    assertThat(currentLevelNumberDisplayed, equalTo(newLevelNumber));
   }
 }

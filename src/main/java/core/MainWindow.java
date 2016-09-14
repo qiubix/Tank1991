@@ -7,7 +7,7 @@ public class MainWindow extends JFrame {
   private JPanel levelPanel = new JPanel();
 
   public MainWindow() {
-    new MainWindow(View.DEFAULT_MAIN_WINDOW_WIDTH, View.DEFAULT_MAIN_WINDOW_HEIGHT);
+    this(View.DEFAULT_MAIN_WINDOW_WIDTH, View.DEFAULT_MAIN_WINDOW_HEIGHT);
   }
 
   public MainWindow(int window_width, int window_height) {
@@ -32,9 +32,12 @@ public class MainWindow extends JFrame {
   }
 
   public int getCurrentLevelNumber() {
-    int levelNumber = -1;
-    JLabel label = (JLabel) levelPanel.getComponent(0);
-    levelNumber = Integer.parseInt(label.getText());
-    return levelNumber;
+    JLabel label = (JLabel) levelPanel.getComponent(1);
+    return Integer.parseInt(label.getText());
+  }
+
+  public void setCurrentLevelNumber(int currentLevelNumber) {
+    JLabel label = (JLabel) levelPanel.getComponent(1);
+    label.setText(String.valueOf(currentLevelNumber));
   }
 }

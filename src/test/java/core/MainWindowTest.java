@@ -11,7 +11,6 @@ import static org.hamcrest.Matchers.*;
 
 public class MainWindowTest {
 
-  @Ignore
   @Test
   public void shouldReturnCurrentLevelNumber() {
     MainWindow window = new MainWindow();
@@ -19,7 +18,6 @@ public class MainWindowTest {
     assertThat(window.getCurrentLevelNumber(), equalTo(0));
   }
 
-  @Ignore
   @Test
   public void shouldContainLevelPanel() {
     MainWindow window = new MainWindow();
