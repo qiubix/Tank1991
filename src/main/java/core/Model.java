@@ -2,7 +2,9 @@ package core;
 
 import objects.Player;
 
-public class Model {
+import java.util.Observable;
+
+public class Model extends Observable {
   private GameState gameState;
   private Player player;
   private int currentLevelNumber;
@@ -53,5 +55,9 @@ public class Model {
 
   public int getPlayerLifes() {
     return playerLifes;
+  }
+
+  public void setCurrentLevelNumber(int currentLevelNumber) {
+    this.currentLevelNumber = currentLevelNumber;
   }
 }
