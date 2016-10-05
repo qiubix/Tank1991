@@ -21,6 +21,7 @@ public class MainWindowTest {
   @Test
   public void shouldContainLevelPanel() {
     MainWindow window = new MainWindow();
+//    window.setVisible(true);
 
     JPanel levelPanel = null;
     for (Component component : window.getContentPane().getComponents()) {

@@ -7,10 +7,12 @@ public class Tank1991 {
     System.out.println("My own Tank game!");
     Model model = new Model();
     View view = new View(model);
+    view.getMainWindow().setVisible(true);
     model.addObserver(view);
 
     Timer timer = new Timer();
-    while (true) {
+    model.startGame();
+    while (model.isRunning()) {
       model.update(timer.tick());
       Thread.sleep(20);
     }

@@ -62,4 +62,8 @@ public class Model extends Observable {
   public void setCurrentLevelNumber(int currentLevelNumber) {
     this.currentLevelNumber = currentLevelNumber;
   }
+
+  public boolean isRunning() {
+    return gameState.equals(GameState.RUNNING);
+  }
 }

@@ -50,6 +50,6 @@ public class View implements Observer {
 
   private void drawPlayer(Graphics2D graphics) {
     Player player = model.getPlayer();
-    graphics.drawImage(player.getImage(), 100, 100, null);
+    graphics.drawImage(player.getImage(), player.getPositionX(), player.getPositionY(), null);
   }
 }
