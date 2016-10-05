@@ -18,7 +18,7 @@ public class MainWindow extends JFrame {
 
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setSize(windowWidth, windowHeight);
-    this.setBackground(Color.blue);
+    this.setBackground(Color.white);
     this.setVisible(true);
   }
 
