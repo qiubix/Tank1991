@@ -1,15 +1,18 @@
 package objects;
 
+import java.awt.*;
+
 public class Tank extends DynamicObject {
 
   private Bullet bullet;
 
   protected boolean shooting;
 
-  public Tank() {
+  public Tank(Image image) {
+    super(image);
     baseVelocity = 1;
     movementDirection = Direction.RIGHT;
-    bullet = new Bullet();
+    bullet = new Bullet(null);
     shooting = false;
   }
 

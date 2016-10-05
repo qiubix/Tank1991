@@ -26,7 +26,7 @@ public class GameObjectFactory {
   }
 
   public Enemy createEnemy() {
-    Enemy newEnemy = new Enemy();
+    Enemy newEnemy = new Enemy(null);
     return newEnemy;
   }
 }

@@ -1,6 +1,7 @@
 package core;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainWindow extends JFrame {
 
@@ -10,24 +11,28 @@ public class MainWindow extends JFrame {
     this(View.DEFAULT_MAIN_WINDOW_WIDTH, View.DEFAULT_MAIN_WINDOW_HEIGHT);
   }
 
-  public MainWindow(int window_width, int window_height) {
+  public MainWindow(int windowWidth, int windowHeight) {
     super("Tank1991");
-    initLevelPanel();
+    initLevelPanel(windowWidth, windowHeight);
     this.getContentPane().add(levelPanel);
 
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setSize(window_width, window_height);
+    this.setSize(windowWidth, windowHeight);
+    this.setBackground(Color.blue);
     this.setVisible(true);
   }
 
-  private void initLevelPanel() {
+  private void initLevelPanel(int windowWidth, int windowHeight) {
     JLabel label = new JLabel("This game is gonna be a lot of fun!");
     JLabel levelNumber = new JLabel("0");
     levelPanel.add(label);
     levelPanel.add(levelNumber);
+    levelPanel.setSize(windowWidth, 20);
+//    levelPanel.setBackground(Color.white);
+    levelPanel.setOpaque(true);
   }
 
-  private JPanel getLevelPanel() {
+  public JPanel getLevelPanel() {
     return levelPanel;
   }
 

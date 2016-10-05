@@ -8,7 +8,7 @@ import static org.hamcrest.Matchers.*;
 public class DestroyableObjectTest {
   @Test
   public void shouldUpdateDecoratedObject() throws Exception {
-    DestroyableObject destroyableObject = new DestroyableObject(new Bullet());
+    DestroyableObject destroyableObject = new DestroyableObject(new Bullet(null), null);
     destroyableObject.update(10);
     //TODO: finish test
   }

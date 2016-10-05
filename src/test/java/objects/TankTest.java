@@ -14,7 +14,7 @@ public class TankTest {
 
   @Before
   public void setUp() throws Exception {
-    tank = new Tank();
+    tank = new Tank(null);
   }
 
   @After

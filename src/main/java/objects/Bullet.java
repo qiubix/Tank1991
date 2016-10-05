@@ -1,8 +1,11 @@
 package objects;
 
+import java.awt.*;
+
 public class Bullet extends DynamicObject {
 
-  public Bullet() {
+  public Bullet(Image image) {
+    super(image);
     baseVelocity = 2;
   }
 

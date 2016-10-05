@@ -13,7 +13,7 @@ public class DynamicObjectTest {
 
   @Before
   public void setUp() throws Exception {
-    dynamicObject = new Bullet();
+    dynamicObject = new Bullet(null);
   }
 
   @After

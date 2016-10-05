@@ -14,7 +14,7 @@ public class Model extends Observable {
 
   public Model() {
     this.gameState = GameState.PAUSE;
-    this.player = new Player();
+    this.player = (Player) Player.create();
     this.player.setPositionX(20);
     this.player.setPositionY(20);
   }
@@ -39,6 +39,8 @@ public class Model extends Observable {
     if(gameState != GameState.PAUSE) {
       player.update(elapsedTime);
     }
+    setChanged();
+    notifyObservers();
   }
 
   public int getCurrentLevelNumber() {
