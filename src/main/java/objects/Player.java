@@ -22,6 +22,10 @@ public class Player extends Tank {
     return PlayerFactory.create();
   }
 
+  public boolean isNotMoving() {
+    return getVelocityX() == 0 && getVelocityY() == 0;
+  }
+
   private static class PlayerFactory {
     public static GameObject create() {
       Player newPlayer = new Player(ImageLoader.loadImage("player1.png"));
