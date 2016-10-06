@@ -16,7 +16,7 @@ public class BulletTest {
 
   @Before
   public void setUp() throws Exception {
-    bullet = new Bullet();
+    bullet = new Bullet(null);
   }
 
   @After

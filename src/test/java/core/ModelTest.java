@@ -29,6 +29,18 @@ public class ModelTest {
   }
 
   @Test
+  public void shouldNotBeRunningBeforeStart() {
+    assertThat(model.isRunning(), equalTo(false));
+  }
+
+  @Test
+  public void shouldBeRunningAfterStart() {
+    model.startGame();
+
+    assertThat(model.isRunning(), equalTo(true));
+  }
+
+  @Test
   public void shouldStartGame() throws Exception {
     final int PLAYER_STARTING_POSITION_X = 20;
     final int PLAYER_STARTING_POSITION_Y = 20;

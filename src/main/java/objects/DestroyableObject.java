@@ -1,9 +1,11 @@
 package objects;
 
+import java.awt.*;
+
 public class DestroyableObject extends GameObjectDecorator {
 
-  public DestroyableObject(GameObject gameObject) {
-    super(gameObject);
+  public DestroyableObject(GameObject gameObject, Image image) {
+    super(gameObject, image);
   }
 
   @Override

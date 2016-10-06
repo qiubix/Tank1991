@@ -1,5 +1,9 @@
 package core;
 
+import graphics.ScreenManager;
+import objects.Player;
+
+import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -10,6 +14,8 @@ public class View implements Observer {
 
   private MainWindow mainWindow;
 
+  private ScreenManager screenManager;
+
   private Model model;
 
   public View(Model model) {
@@ -18,7 +24,8 @@ public class View implements Observer {
 
   public View(Model model, int width, int height) {
     this.model = model;
-    mainWindow = new MainWindow(width, height);
+    this.mainWindow = new MainWindow(width, height);
+    this.screenManager = new ScreenManager(mainWindow);
   }
 
   public MainWindow getMainWindow() {
@@ -29,5 +36,20 @@ public class View implements Observer {
   public void update(Observable observed, Object arg) {
     int newLevelNumber = model.getCurrentLevelNumber();
     mainWindow.setCurrentLevelNumber(newLevelNumber);
+    draw();
+  }
+
+  private void draw() {
+    Graphics2D graphics = screenManager.getGraphics();
+
+    drawPlayer(graphics);
+
+    graphics.dispose();
+    screenManager.update();
+  }
+
+  private void drawPlayer(Graphics2D graphics) {
+    Player player = model.getPlayer();
+    graphics.drawImage(player.getImage(), player.getPositionX(), player.getPositionY(), null);
   }
 }

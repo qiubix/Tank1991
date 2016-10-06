@@ -1,5 +1,6 @@
 package core;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
@@ -14,8 +15,15 @@ public class ViewTest {
   private final int MAIN_WINDOW_WIDTH = 1024;
   private final int MAIN_WINDOW_HEIGHT = 768;
 
+  @Before
+  public void setUp() {
+    view.getMainWindow().setVisible(false);
+  }
+
   @Test
   public void shouldShowMainFrame() {
+    Model model = new Model();
+    View view = new View(model);
     MainWindow mainWindow = view.getMainWindow();
 
     assertThat(mainWindow.isVisible(), equalTo(true));

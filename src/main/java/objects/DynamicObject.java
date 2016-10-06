@@ -1,5 +1,7 @@
 package objects;
 
+import java.awt.*;
+
 abstract class DynamicObject extends GameObject {
   protected int velocityX;
   protected int velocityY;
@@ -11,7 +13,8 @@ abstract class DynamicObject extends GameObject {
 
   protected int baseVelocity;
 
-  protected DynamicObject() {
+  protected DynamicObject(Image image) {
+    super(image);
     baseVelocity = 1;
   }
 
