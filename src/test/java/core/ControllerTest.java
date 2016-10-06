@@ -24,6 +24,8 @@ public class ControllerTest {
       View view = new View(model);
       controller = new Controller(model, view);
       robot = new Robot();
+      robot.setAutoDelay(40);
+      robot.setAutoWaitForIdle(true);
     } catch (Exception ex) {
       ex.printStackTrace();
     }
@@ -42,9 +44,10 @@ public class ControllerTest {
     Player player = model.getPlayer();
     assertThat(player.isNotMoving(), equalTo(true));
 
+    robot.delay(50);
     robot.keyPress(KeyEvent.VK_UP);
-
-    Thread.sleep(200);
+    robot.delay(100);
+    robot.keyRelease(KeyEvent.VK_UP);
 
     assertThat(player.getVelocityX(), equalTo(0));
     assertThat(player.getVelocityY(), lessThan(0));
@@ -55,9 +58,10 @@ public class ControllerTest {
     Player player = model.getPlayer();
     assertThat(player.isNotMoving(), equalTo(true));
 
+    robot.delay(50);
     robot.keyPress(KeyEvent.VK_DOWN);
-
-    Thread.sleep(200);
+    robot.delay(100);
+    robot.keyRelease(KeyEvent.VK_DOWN);
 
     assertThat(player.getVelocityX(), equalTo(0));
     assertThat(player.getVelocityY(), greaterThan(0));
@@ -68,9 +72,10 @@ public class ControllerTest {
     Player player = model.getPlayer();
     assertThat(player.isNotMoving(), equalTo(true));
 
+    robot.delay(50);
     robot.keyPress(KeyEvent.VK_RIGHT);
-
-    Thread.sleep(200);
+    robot.delay(100);
+    robot.keyRelease(KeyEvent.VK_DOWN);
 
     assertThat(player.getVelocityX(), greaterThan(0));
     assertThat(player.getVelocityY(), equalTo(0));
@@ -81,11 +86,25 @@ public class ControllerTest {
     Player player = model.getPlayer();
     assertThat(player.isNotMoving(), equalTo(true));
 
+    robot.delay(50);
     robot.keyPress(KeyEvent.VK_LEFT);
-
-    Thread.sleep(200);
+    robot.delay(100);
+    robot.keyRelease(KeyEvent.VK_DOWN);
 
     assertThat(player.getVelocityX(), lessThan(0));
     assertThat(player.getVelocityY(), equalTo(0));
+  }
+
+  @Test
+  public void shouldFinishGameOnEscapePressed() throws InterruptedException {
+    model.startGame();
+    robot.delay(50);
+    robot.keyPress(KeyEvent.VK_ESCAPE);
+    robot.delay(100);
+    robot.keyRelease(KeyEvent.VK_ESCAPE);
+
+    Thread.sleep(200);
+
+    assertThat(model.isRunning(), equalTo(false));
   }
 }

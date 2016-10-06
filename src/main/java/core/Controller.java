@@ -54,6 +54,13 @@ public class Controller implements Observer {
         player.moveLeft();
       }
     });
+    activeWindow.getInputMap().put(KeyStroke.getKeyStroke("ESCAPE"), "EXIT");
+    activeWindow.getActionMap().put("EXIT", new AbstractAction() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        model.finishGame();
+      }
+    });
   }
 
   @Override

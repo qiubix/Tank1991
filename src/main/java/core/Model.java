@@ -66,4 +66,8 @@ public class Model extends Observable {
   public boolean isRunning() {
     return gameState.equals(GameState.RUNNING);
   }
+
+  public void finishGame() {
+    gameState = GameState.FINISHED;
+  }
 }

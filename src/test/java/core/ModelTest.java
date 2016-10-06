@@ -108,4 +108,11 @@ public class ModelTest {
 //    assertEquals(playerPositionX, model.getPlayer().getPositionX());
 //    assertNotEquals(playerPositionY, model.getPlayer().getPositionY());
   }
+
+  @Test
+  public void shouldFinishGame() {
+    model.finishGame();
+
+    assertThat(model.getGameState(), equalTo(GameState.FINISHED));
+  }
 }
