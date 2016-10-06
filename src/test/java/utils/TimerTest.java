@@ -17,7 +17,8 @@ public class TimerTest {
 
       long elapsedTime = timer.tick();
 
-      assertThat(elapsedTime, equalTo(sleepTime));
+      assertThat(elapsedTime, greaterThan(sleepTime - 5));
+      assertThat(elapsedTime, lessThan(sleepTime + 5));
 
     } catch (InterruptedException e) {
       e.printStackTrace();
