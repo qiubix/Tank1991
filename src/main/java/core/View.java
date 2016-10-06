@@ -3,6 +3,7 @@ package core;
 import graphics.ScreenManager;
 import objects.Player;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Observable;
 import java.util.Observer;
@@ -30,6 +31,10 @@ public class View implements Observer {
 
   public MainWindow getMainWindow() {
     return mainWindow;
+  }
+
+  public JComponent getLevelPanel() {
+    return mainWindow.getLevelPanel();
   }
 
   @Override
