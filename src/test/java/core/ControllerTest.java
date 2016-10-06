@@ -24,7 +24,7 @@ public class ControllerTest {
       View view = new View(model);
       controller = new Controller(model, view);
       robot = new Robot();
-      robot.setAutoDelay(40);
+      robot.setAutoDelay(50);
       robot.setAutoWaitForIdle(true);
     } catch (Exception ex) {
       ex.printStackTrace();
@@ -37,6 +37,7 @@ public class ControllerTest {
     robot.keyRelease(KeyEvent.VK_DOWN);
     robot.keyRelease(KeyEvent.VK_RIGHT);
     robot.keyRelease(KeyEvent.VK_LEFT);
+    robot.keyRelease(KeyEvent.VK_ESCAPE);
   }
 
   @Test
@@ -46,7 +47,7 @@ public class ControllerTest {
 
     robot.delay(50);
     robot.keyPress(KeyEvent.VK_UP);
-    robot.delay(100);
+    robot.delay(50);
     robot.keyRelease(KeyEvent.VK_UP);
 
     assertThat(player.getVelocityX(), equalTo(0));
@@ -60,7 +61,7 @@ public class ControllerTest {
 
     robot.delay(50);
     robot.keyPress(KeyEvent.VK_DOWN);
-    robot.delay(100);
+    robot.delay(50);
     robot.keyRelease(KeyEvent.VK_DOWN);
 
     assertThat(player.getVelocityX(), equalTo(0));
@@ -74,7 +75,7 @@ public class ControllerTest {
 
     robot.delay(50);
     robot.keyPress(KeyEvent.VK_RIGHT);
-    robot.delay(100);
+    robot.delay(50);
     robot.keyRelease(KeyEvent.VK_DOWN);
 
     assertThat(player.getVelocityX(), greaterThan(0));
@@ -88,7 +89,7 @@ public class ControllerTest {
 
     robot.delay(50);
     robot.keyPress(KeyEvent.VK_LEFT);
-    robot.delay(100);
+    robot.delay(50);
     robot.keyRelease(KeyEvent.VK_DOWN);
 
     assertThat(player.getVelocityX(), lessThan(0));
@@ -98,12 +99,11 @@ public class ControllerTest {
   @Test
   public void shouldFinishGameOnEscapePressed() throws InterruptedException {
     model.startGame();
+
     robot.delay(50);
     robot.keyPress(KeyEvent.VK_ESCAPE);
-    robot.delay(100);
+    robot.delay(50);
     robot.keyRelease(KeyEvent.VK_ESCAPE);
-
-    Thread.sleep(200);
 
     assertThat(model.isRunning(), equalTo(false));
   }
