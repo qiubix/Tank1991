@@ -1,7 +1,7 @@
 package core;
 
+import graphics.Drawable;
 import graphics.ScreenManager;
-import objects.Player;
 
 import javax.swing.*;
 import java.awt.*;
@@ -25,8 +25,10 @@ public class View implements Observer {
 
   public View(Model model, int width, int height) {
     this.model = model;
-    this.mainWindow = new MainWindow(width, height);
+    this.mainWindow = new MainWindow(width, height, model.getLevel());
+//    this.mainWindow.setLevelPanel(model.getLevel());
     this.screenManager = new ScreenManager(mainWindow);
+    this.mainWindow.setVisible(true);
   }
 
   public MainWindow getMainWindow() {
@@ -46,15 +48,13 @@ public class View implements Observer {
 
   private void draw() {
     Graphics2D graphics = screenManager.getGraphics();
+    graphics.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
 
-    drawPlayer(graphics);
+    Drawable graphicsContext = (Drawable) getLevelPanel();
+    graphicsContext.draw(graphics);
+//    getLevelPanel().repaint();
 
     graphics.dispose();
     screenManager.update();
-  }
-
-  private void drawPlayer(Graphics2D graphics) {
-    Player player = model.getPlayer();
-    graphics.drawImage(player.getImage(), player.getPositionX(), player.getPositionY(), null);
   }
 }

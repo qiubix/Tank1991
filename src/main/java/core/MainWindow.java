@@ -6,14 +6,15 @@ import java.awt.*;
 public class MainWindow extends JFrame {
 
   private JPanel scorePanel = new JPanel();
-  private JPanel levelPanel = new JPanel();
+  private JPanel levelPanel;
 
   public MainWindow() {
-    this(View.DEFAULT_MAIN_WINDOW_WIDTH, View.DEFAULT_MAIN_WINDOW_HEIGHT);
+    this(View.DEFAULT_MAIN_WINDOW_WIDTH, View.DEFAULT_MAIN_WINDOW_HEIGHT, new JPanel());
   }
 
-  public MainWindow(int windowWidth, int windowHeight) {
+  public MainWindow(int windowWidth, int windowHeight, JPanel levelPanel) {
     super("Tank1991");
+    this.levelPanel = levelPanel;
     setInitialParameters(windowWidth, windowHeight);
     setUpPanels(windowWidth, windowHeight);
     setVisible(true);
@@ -21,6 +22,10 @@ public class MainWindow extends JFrame {
 
   public JPanel getLevelPanel() {
     return levelPanel;
+  }
+
+  public void setLevelPanel(JPanel levelPanel) {
+    this.levelPanel = levelPanel;
   }
 
   public int getCurrentLevelNumber() {

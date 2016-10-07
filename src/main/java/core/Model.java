@@ -1,22 +1,22 @@
 package core;
 
 import objects.Player;
+import level.Level;
 
 import java.util.Observable;
 
 public class Model extends Observable {
   private GameState gameState;
-  private Player player;
   private int currentLevelNumber;
   private int playerPoints;
   private int enemiesToBeat;
   private int playerLifes;
 
+  private Level level;
+
   public Model() {
     this.gameState = GameState.PAUSE;
-    this.player = (Player) Player.create();
-    this.player.setPositionX(20);
-    this.player.setPositionY(20);
+    this.level = new Level();
   }
 
   public GameState getGameState() {
@@ -32,12 +32,12 @@ public class Model extends Observable {
   }
 
   public Player getPlayer() {
-    return player;
+    return level.getPlayer();
   }
 
   public void update(long elapsedTime) {
     if(gameState != GameState.PAUSE) {
-      player.update(elapsedTime);
+      getPlayer().update(elapsedTime);
     }
     setChanged();
     notifyObservers();
@@ -69,5 +69,9 @@ public class Model extends Observable {
 
   public void finishGame() {
     gameState = GameState.FINISHED;
+  }
+
+  public Level getLevel() {
+    return level;
   }
 }

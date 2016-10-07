@@ -28,6 +28,7 @@ public class Controller implements Observer {
       public void actionPerformed(ActionEvent e) {
         Player player = model.getPlayer();
         player.moveUp();
+        System.out.println("Player moving up");
       }
     });
     activeWindow.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "MOVE_DOWN");
@@ -36,6 +37,7 @@ public class Controller implements Observer {
       public void actionPerformed(ActionEvent e) {
         Player player = model.getPlayer();
         player.moveDown();
+        System.out.println("Player moving down");
       }
     });
     activeWindow.getInputMap().put(KeyStroke.getKeyStroke("RIGHT"), "MOVE_RIGHT");
@@ -44,6 +46,7 @@ public class Controller implements Observer {
       public void actionPerformed(ActionEvent e) {
         Player player = model.getPlayer();
         player.moveRight();
+        System.out.println("Player moving right");
       }
     });
     activeWindow.getInputMap().put(KeyStroke.getKeyStroke("LEFT"), "MOVE_LEFT");
@@ -52,6 +55,7 @@ public class Controller implements Observer {
       public void actionPerformed(ActionEvent e) {
         Player player = model.getPlayer();
         player.moveLeft();
+        System.out.println("Player moving left");
       }
     });
     activeWindow.getInputMap().put(KeyStroke.getKeyStroke("ESCAPE"), "EXIT");
