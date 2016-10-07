@@ -5,6 +5,7 @@ import java.awt.*;
 
 public class MainWindow extends JFrame {
 
+  private JPanel scorePanel = new JPanel();
   private JPanel levelPanel = new JPanel();
 
   public MainWindow() {
@@ -13,23 +14,30 @@ public class MainWindow extends JFrame {
 
   public MainWindow(int windowWidth, int windowHeight) {
     super("Tank1991");
+    initScorePanel(windowWidth, windowHeight);
     initLevelPanel(windowWidth, windowHeight);
-    this.getContentPane().add(levelPanel);
+    setLayout(new BorderLayout());
+    getContentPane().add(levelPanel, BorderLayout.CENTER);
+    getContentPane().add(scorePanel, BorderLayout.PAGE_END);
 
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setSize(windowWidth, windowHeight);
-    this.setBackground(Color.white);
-    this.setIgnoreRepaint(true);
-    this.setVisible(true);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setSize(windowWidth, windowHeight);
+    setBackground(Color.white);
+    setIgnoreRepaint(true);
+    setVisible(true);
+  }
+
+  private void initScorePanel(int windowWidth, int windowHeight) {
+    JLabel label = new JLabel("This game is gonna be a lot of fun!");
+    JLabel levelNumber = new JLabel("0");
+    scorePanel.setSize(windowWidth, 20);
+    scorePanel.add(label);
+    scorePanel.add(levelNumber);
   }
 
   private void initLevelPanel(int windowWidth, int windowHeight) {
-    JLabel label = new JLabel("This game is gonna be a lot of fun!");
-    JLabel levelNumber = new JLabel("0");
-    levelPanel.add(label);
-    levelPanel.add(levelNumber);
-    levelPanel.setSize(windowWidth, 20);
-//    levelPanel.setBackground(Color.white);
+    levelPanel.setSize(windowWidth, windowHeight - 20);
+    levelPanel.setBackground(Color.cyan);
     levelPanel.setOpaque(true);
   }
 
@@ -38,12 +46,12 @@ public class MainWindow extends JFrame {
   }
 
   public int getCurrentLevelNumber() {
-    JLabel label = (JLabel) levelPanel.getComponent(1);
+    JLabel label = (JLabel) scorePanel.getComponent(1);
     return Integer.parseInt(label.getText());
   }
 
   public void setCurrentLevelNumber(int currentLevelNumber) {
-    JLabel label = (JLabel) levelPanel.getComponent(1);
+    JLabel label = (JLabel) scorePanel.getComponent(1);
     label.setText(String.valueOf(currentLevelNumber));
   }
 }
