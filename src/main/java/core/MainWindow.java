@@ -14,31 +14,9 @@ public class MainWindow extends JFrame {
 
   public MainWindow(int windowWidth, int windowHeight) {
     super("Tank1991");
-    initScorePanel(windowWidth, windowHeight);
-    initLevelPanel(windowWidth, windowHeight);
-    setLayout(new BorderLayout());
-    getContentPane().add(levelPanel, BorderLayout.CENTER);
-    getContentPane().add(scorePanel, BorderLayout.PAGE_END);
-
-    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    setSize(windowWidth, windowHeight);
-    setBackground(Color.white);
-    setIgnoreRepaint(true);
+    setInitialParameters(windowWidth, windowHeight);
+    setUpPanels(windowWidth, windowHeight);
     setVisible(true);
-  }
-
-  private void initScorePanel(int windowWidth, int windowHeight) {
-    JLabel label = new JLabel("This game is gonna be a lot of fun!");
-    JLabel levelNumber = new JLabel("0");
-    scorePanel.setSize(windowWidth, 20);
-    scorePanel.add(label);
-    scorePanel.add(levelNumber);
-  }
-
-  private void initLevelPanel(int windowWidth, int windowHeight) {
-    levelPanel.setSize(windowWidth, windowHeight - 20);
-    levelPanel.setBackground(Color.cyan);
-    levelPanel.setOpaque(true);
   }
 
   public JPanel getLevelPanel() {
@@ -53,5 +31,34 @@ public class MainWindow extends JFrame {
   public void setCurrentLevelNumber(int currentLevelNumber) {
     JLabel label = (JLabel) scorePanel.getComponent(1);
     label.setText(String.valueOf(currentLevelNumber));
+  }
+
+  private void setInitialParameters(int windowWidth, int windowHeight) {
+    setLayout(new BorderLayout());
+    setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    setSize(windowWidth, windowHeight);
+    setBackground(Color.white);
+    setIgnoreRepaint(true);
+  }
+
+  private void setUpPanels(int windowWidth, int windowHeight) {
+    initScorePanel(windowWidth, windowHeight);
+    initLevelPanel(windowWidth, windowHeight);
+    getContentPane().add(levelPanel, BorderLayout.CENTER);
+    getContentPane().add(scorePanel, BorderLayout.PAGE_END);
+  }
+
+  private void initScorePanel(int windowWidth, int windowHeight) {
+    JLabel label = new JLabel("This game is gonna be a lot of fun!");
+    JLabel levelNumber = new JLabel("0");
+    scorePanel.setSize(windowWidth, 20);
+    scorePanel.add(label);
+    scorePanel.add(levelNumber);
+  }
+
+  private void initLevelPanel(int windowWidth, int windowHeight) {
+    levelPanel.setSize(windowWidth, windowHeight - 20);
+    levelPanel.setBackground(Color.cyan);
+    levelPanel.setOpaque(true);
   }
 }
