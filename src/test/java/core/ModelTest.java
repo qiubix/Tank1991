@@ -24,7 +24,6 @@ public class ModelTest {
 
   @Test
   public void shouldInitModelInPausedState() throws Exception {
-//    assertEquals(GameState.PAUSE, model.getGameState());
     assertThat(model.getGameState(), equalTo(GameState.PAUSE));
   }
 
@@ -81,8 +80,6 @@ public class ModelTest {
     model.update(elapsedTime);
     assertThat(model.getPlayer().getPositionX(), equalTo(playerPositionX));
     assertThat(model.getPlayer().getPositionY(), equalTo(playerPositionY));
-//    assertEquals(playerPositionX, model.getPlayer().getPositionX());
-//    assertEquals(playerPositionY, model.getPlayer().getPositionY());
   }
 
   @Test
@@ -105,8 +102,6 @@ public class ModelTest {
     model.update(elapsedTime);
     assertThat(model.getPlayer().getPositionX(), equalTo(playerPositionX));
     assertThat(model.getPlayer().getPositionY(), not(equalTo(playerPositionY)));
-//    assertEquals(playerPositionX, model.getPlayer().getPositionX());
-//    assertNotEquals(playerPositionY, model.getPlayer().getPositionY());
   }
 
   @Test

@@ -3,7 +3,6 @@ package objects;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-//import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -31,9 +30,6 @@ public class TankTest {
     assertThat(tank.isShooting(), equalTo(true));
     assertThat(tank.getBullet().getVelocityX(), equalTo(0f));
     assertThat(tank.getBullet().getVelocityY(), equalTo(BULLET_VELOCITY));
-//    assertTrue(tank.isShooting());
-//    assertEquals(0, tank.getBullet().getVelocityX());
-//    assertEquals(BULLET_VELOCITY, tank.getBullet().getVelocityY());
   }
 
   @Test
@@ -45,7 +41,5 @@ public class TankTest {
 
     assertThat(tank.getBullet().getVelocityX(), equalTo(0f));
     assertThat(tank.getBullet().getVelocityY(), equalTo(BULLET_VELOCITY));
-//    assertEquals(0, tank.getBullet().getVelocityX());
-//    assertEquals(BULLET_VELOCITY, tank.getBullet().getVelocityY());
   }
 }

@@ -3,7 +3,6 @@ package objects;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-//import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -27,9 +26,6 @@ public class DynamicObjectTest {
     assertThat(dynamicObject.getVelocityX(), equalTo(0f));
     assertThat(dynamicObject.getVelocityY(), lessThan(0f));
     assertThat(dynamicObject.movementDirection, equalTo(DynamicObject.Direction.UP));
-//    assertEquals(0, dynamicObject.getVelocityX());
-//    assertTrue(0 > dynamicObject.getVelocityY());
-//    assertEquals(DynamicObject.Direction.UP, dynamicObject.movementDirection);
   }
 
   @Test
@@ -39,9 +35,6 @@ public class DynamicObjectTest {
     assertThat(dynamicObject.getVelocityX(), equalTo(0f));
     assertThat(dynamicObject.getVelocityY(), greaterThan(0f));
     assertThat(dynamicObject.movementDirection, equalTo(DynamicObject.Direction.DOWN));
-//    assertEquals(0, dynamicObject.getVelocityX());
-//    assertTrue(0 < dynamicObject.getVelocityY());
-//    assertEquals(DynamicObject.Direction.DOWN, dynamicObject.movementDirection);
   }
 
   @Test
@@ -51,9 +44,6 @@ public class DynamicObjectTest {
     assertThat(dynamicObject.getVelocityX(), lessThan(0f));
     assertThat(dynamicObject.getVelocityY(), equalTo(0f));
     assertThat(dynamicObject.movementDirection, equalTo(DynamicObject.Direction.LEFT));
-//    assertTrue(0 > dynamicObject.getVelocityX());
-//    assertEquals(0, dynamicObject.getVelocityY());
-//    assertEquals(DynamicObject.Direction.LEFT, dynamicObject.movementDirection);
   }
 
   @Test
@@ -63,9 +53,6 @@ public class DynamicObjectTest {
     assertThat(dynamicObject.getVelocityX(), greaterThan(0f));
     assertThat(dynamicObject.getVelocityY(), equalTo(0f));
     assertThat(dynamicObject.movementDirection, equalTo(DynamicObject.Direction.RIGHT));
-//    assertTrue(0 < dynamicObject.getVelocityX());
-//    assertEquals(0, dynamicObject.getVelocityY());
-//    assertEquals(DynamicObject.Direction.RIGHT, dynamicObject.movementDirection);
   }
 
   @Test
@@ -77,36 +64,24 @@ public class DynamicObjectTest {
     assertThat(dynamicObject.getVelocityX(), equalTo(0f));
     assertThat(dynamicObject.getVelocityY(), lessThan(0f));
     assertThat(dynamicObject.movementDirection, equalTo(DynamicObject.Direction.UP));
-//    assertEquals(0, dynamicObject.getVelocityX());
-//    assertTrue(0 > dynamicObject.getVelocityY());
-//    assertEquals(DynamicObject.Direction.UP, dynamicObject.movementDirection);
 
     dynamicObject.move(DynamicObject.Direction.DOWN);
 
     assertThat(dynamicObject.getVelocityX(), equalTo(0f));
     assertThat(dynamicObject.getVelocityY(), greaterThan(0f));
     assertThat(dynamicObject.movementDirection, equalTo(DynamicObject.Direction.DOWN));
-//    assertEquals(0, dynamicObject.getVelocityX());
-//    assertTrue(0 < dynamicObject.getVelocityY());
-//    assertEquals(DynamicObject.Direction.DOWN, dynamicObject.movementDirection);
 
     dynamicObject.move(DynamicObject.Direction.LEFT);
 
     assertThat(dynamicObject.getVelocityX(), lessThan(0f));
     assertThat(dynamicObject.getVelocityY(), equalTo(0f));
     assertThat(dynamicObject.movementDirection, equalTo(DynamicObject.Direction.LEFT));
-//    assertTrue(0 > dynamicObject.getVelocityX());
-//    assertEquals(0, dynamicObject.getVelocityY());
-//    assertEquals(DynamicObject.Direction.LEFT, dynamicObject.movementDirection);
 
     dynamicObject.move(DynamicObject.Direction.RIGHT);
 
     assertThat(dynamicObject.getVelocityX(), greaterThan(0f));
     assertThat(dynamicObject.getVelocityY(), equalTo(0f));
     assertThat(dynamicObject.movementDirection, equalTo(DynamicObject.Direction.RIGHT));
-//    assertTrue(0 < dynamicObject.getVelocityX());
-//    assertEquals(0, dynamicObject.getVelocityY());
-//    assertEquals(DynamicObject.Direction.RIGHT, dynamicObject.movementDirection);
   }
 
   @Test
@@ -119,7 +94,6 @@ public class DynamicObjectTest {
     dynamicObject.update(MOVEMENT_TIME);
 
     currentPositionX += MOVEMENT_TIME * dynamicObject.getVelocityX();
-//    assertEquals(currentPositionX, dynamicObject.getPositionX());
     assertThat(dynamicObject.getPositionX(), equalTo(currentPositionX));
   }
 
@@ -127,16 +101,12 @@ public class DynamicObjectTest {
   public void shouldMoveWithConstantSpeed() throws Exception {
     final int MOVEMENT_TIME = 10;
     final float BASE_VELOCITY = 2f;
-//    assertEquals(0, dynamicObject.getPositionX());
-//    assertEquals(0, dynamicObject.getPositionY());
     assertThat(dynamicObject.getPositionX(), equalTo(0));
     assertThat(dynamicObject.getPositionY(), equalTo(0));
 
     dynamicObject.moveDown();
     dynamicObject.update(MOVEMENT_TIME);
 
-//    assertEquals(0, dynamicObject.getPositionX());
-//    assertEquals(MOVEMENT_TIME * BASE_VELOCITY, dynamicObject.getPositionY());
     assertThat(dynamicObject.getPositionX(), equalTo(0));
     assertThat(dynamicObject.getPositionY(), equalTo((int) (MOVEMENT_TIME * BASE_VELOCITY)));
   }
@@ -146,9 +116,6 @@ public class DynamicObjectTest {
     dynamicObject.moveRight();
     dynamicObject.moveDown();
 
-//    assertEquals(0, dynamicObject.getVelocityX());
-//    assertTrue(0 < dynamicObject.getVelocityY());
-//    assertEquals(DynamicObject.Direction.DOWN, dynamicObject.movementDirection);
     assertThat(dynamicObject.getVelocityX(), equalTo(0f));
     assertThat(dynamicObject.getVelocityY(), greaterThan(0f));
     assertThat(dynamicObject.movementDirection, equalTo(DynamicObject.Direction.DOWN));
@@ -158,9 +125,7 @@ public class DynamicObjectTest {
   public void shouldTurn180Degrees() throws Exception {
     dynamicObject.moveRight();
     dynamicObject.moveLeft();
-//    assertTrue(0 > dynamicObject.getVelocityX());
-//    assertEquals(0, dynamicObject.getVelocityY());
-//    assertEquals(DynamicObject.Direction.LEFT, dynamicObject.movementDirection);
+
     assertThat(dynamicObject.getVelocityX(), lessThan(0f));
     assertThat(dynamicObject.getVelocityY(), equalTo(0f));
     assertThat(dynamicObject.movementDirection, equalTo(DynamicObject.Direction.LEFT));
@@ -172,8 +137,6 @@ public class DynamicObjectTest {
 
     dynamicObject.collide();
 
-//    assertEquals(0, dynamicObject.getVelocityX());
-//    assertEquals(0, dynamicObject.getVelocityY());
     assertThat(dynamicObject.getVelocityX(), equalTo(0f));
     assertThat(dynamicObject.getVelocityY(), equalTo(0f));
   }

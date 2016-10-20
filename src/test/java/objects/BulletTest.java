@@ -3,7 +3,6 @@ package objects;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-//import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -31,9 +30,6 @@ public class BulletTest {
     assertThat(bullet.getVelocityX(), equalTo(0f));
     assertThat(bullet.getVelocityY(), equalTo(-BASE_BULLET_VELOCITY));
     assertThat(bullet.movementDirection, equalTo(DynamicObject.Direction.UP));
-//    assertEquals(-BASE_BULLET_VELOCITY, bullet.getVelocityY());
-//    assertEquals(0, bullet.getVelocityX());
-//    assertEquals(DynamicObject.Direction.UP, bullet.movementDirection);
   }
 
   @Test
@@ -43,9 +39,6 @@ public class BulletTest {
     assertThat(bullet.getVelocityX(), equalTo(0f));
     assertThat(bullet.getVelocityY(), equalTo(BASE_BULLET_VELOCITY));
     assertThat(bullet.movementDirection, equalTo(DynamicObject.Direction.DOWN));
-//    assertEquals(BASE_BULLET_VELOCITY, bullet.getVelocityY());
-//    assertEquals(0, bullet.getVelocityX());
-//    assertEquals(DynamicObject.Direction.DOWN, bullet.movementDirection);
   }
 
   @Test
@@ -55,9 +48,6 @@ public class BulletTest {
     assertThat(bullet.getVelocityX(), equalTo(-BASE_BULLET_VELOCITY));
     assertThat(bullet.getVelocityY(), equalTo(0f));
     assertThat(bullet.movementDirection, equalTo(DynamicObject.Direction.LEFT));
-//    assertEquals(-BASE_BULLET_VELOCITY, bullet.getVelocityX());
-//    assertEquals(0, bullet.getVelocityY());
-//    assertEquals(DynamicObject.Direction.LEFT, bullet.movementDirection);
   }
 
   @Test
@@ -67,8 +57,5 @@ public class BulletTest {
     assertThat(bullet.getVelocityX(), equalTo(BASE_BULLET_VELOCITY));
     assertThat(bullet.getVelocityY(), equalTo(0f));
     assertThat(bullet.movementDirection, equalTo(DynamicObject.Direction.RIGHT));
-//    assertEquals(BASE_BULLET_VELOCITY, bullet.getVelocityX());
-//    assertEquals(0, bullet.getVelocityY());
-//    assertEquals(DynamicObject.Direction.RIGHT, bullet.movementDirection);
   }
 }
