@@ -3,8 +3,8 @@ package objects;
 import java.awt.*;
 
 public abstract class GameObject {
-  protected int positionX;
-  protected int positionY;
+  protected float positionX;
+  protected float positionY;
 
   protected Image image;
 
@@ -13,11 +13,11 @@ public abstract class GameObject {
   }
 
   public int getPositionX() {
-    return positionX;
+    return (int) positionX;
   }
 
   public int getPositionY() {
-    return positionY;
+    return (int) positionY;
   }
 
   public Image getImage() {

@@ -11,6 +11,7 @@ import static org.hamcrest.Matchers.*;
 public class TankTest {
 
   private Tank tank;
+  final float BULLET_VELOCITY = 2f;
 
   @Before
   public void setUp() throws Exception {
@@ -23,13 +24,12 @@ public class TankTest {
 
   @Test
   public void shouldFireBullet() throws Exception {
-    final int BULLET_VELOCITY = 2;
     tank.movementDirection = DynamicObject.Direction.DOWN;
 
     tank.shoot();
 
     assertThat(tank.isShooting(), equalTo(true));
-    assertThat(tank.getBullet().getVelocityX(), equalTo(0));
+    assertThat(tank.getBullet().getVelocityX(), equalTo(0f));
     assertThat(tank.getBullet().getVelocityY(), equalTo(BULLET_VELOCITY));
 //    assertTrue(tank.isShooting());
 //    assertEquals(0, tank.getBullet().getVelocityX());
@@ -38,13 +38,12 @@ public class TankTest {
 
   @Test
   public void shouldNotChangeDirectionOfBulletTryingToShootAgain() throws Exception {
-    final int BULLET_VELOCITY = 2;
     tank.getBullet().moveDown();
     tank.shooting = true;
     tank.moveRight();
     tank.shoot();
 
-    assertThat(tank.getBullet().getVelocityX(), equalTo(0));
+    assertThat(tank.getBullet().getVelocityX(), equalTo(0f));
     assertThat(tank.getBullet().getVelocityY(), equalTo(BULLET_VELOCITY));
 //    assertEquals(0, tank.getBullet().getVelocityX());
 //    assertEquals(BULLET_VELOCITY, tank.getBullet().getVelocityY());

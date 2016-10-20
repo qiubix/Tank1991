@@ -3,34 +3,34 @@ package objects;
 import java.awt.*;
 
 abstract class DynamicObject extends GameObject {
-  protected int velocityX;
-  protected int velocityY;
+  protected float velocityX;
+  protected float velocityY;
 
   public enum Direction {
     UP, DOWN, LEFT, RIGHT
   }
   protected Direction movementDirection;
 
-  protected int baseVelocity;
+  protected float baseVelocity;
 
   protected DynamicObject(Image image) {
     super(image);
-    baseVelocity = 1;
+    baseVelocity = 0.3f;
   }
 
-  public int getVelocityX() {
+  public float getVelocityX() {
     return velocityX;
   }
 
-  public void setVelocityX(int velocityX) {
+  public void setVelocityX(float velocityX) {
     this.velocityX = velocityX;
   }
 
-  public int getVelocityY() {
+  public float getVelocityY() {
     return velocityY;
   }
 
-  public void setVelocityY(int velocityY) {
+  public void setVelocityY(float velocityY) {
     this.velocityY = velocityY;
   }
 

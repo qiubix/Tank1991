@@ -50,8 +50,8 @@ public class ControllerTest {
     robot.delay(50);
     robot.keyRelease(KeyEvent.VK_UP);
 
-    assertThat(player.getVelocityX(), equalTo(0));
-    assertThat(player.getVelocityY(), lessThan(0));
+    assertThat(player.getVelocityX(), equalTo(0f));
+    assertThat(player.getVelocityY(), lessThan(0f));
   }
 
   @Test
@@ -64,8 +64,8 @@ public class ControllerTest {
     robot.delay(50);
     robot.keyRelease(KeyEvent.VK_DOWN);
 
-    assertThat(player.getVelocityX(), equalTo(0));
-    assertThat(player.getVelocityY(), greaterThan(0));
+    assertThat(player.getVelocityX(), equalTo(0f));
+    assertThat(player.getVelocityY(), greaterThan(0f));
   }
 
   @Test
@@ -78,8 +78,8 @@ public class ControllerTest {
     robot.delay(50);
     robot.keyRelease(KeyEvent.VK_DOWN);
 
-    assertThat(player.getVelocityX(), greaterThan(0));
-    assertThat(player.getVelocityY(), equalTo(0));
+    assertThat(player.getVelocityX(), greaterThan(0f));
+    assertThat(player.getVelocityY(), equalTo(0f));
   }
 
   @Test
@@ -92,8 +92,8 @@ public class ControllerTest {
     robot.delay(50);
     robot.keyRelease(KeyEvent.VK_DOWN);
 
-    assertThat(player.getVelocityX(), lessThan(0));
-    assertThat(player.getVelocityY(), equalTo(0));
+    assertThat(player.getVelocityX(), lessThan(0f));
+    assertThat(player.getVelocityY(), equalTo(0f));
   }
 
   @Test
