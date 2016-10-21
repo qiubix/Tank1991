@@ -21,6 +21,14 @@ public class Level extends JPanel implements Drawable //implements Drawable
 //    player.setVelocityX(1);
   }
 
+  public Level(int levelWidth, int levelHeight) {
+    setDoubleBuffered(true);
+    setSize(levelWidth, levelHeight);
+    player = (Player) Player.create();
+    player.setPositionX(20);
+    player.setPositionY(20);
+  }
+
   public Player getPlayer() {
     return player;
   }

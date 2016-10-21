@@ -12,11 +12,14 @@ public class Model extends Observable {
   private int enemiesToBeat;
   private int playerLifes;
 
+  private final int levelWidth = 1024;
+  private final int levelHeight = 748;
+
   private Level level;
 
   public Model() {
     this.gameState = GameState.PAUSE;
-    this.level = new Level();
+    this.level = new Level(levelWidth, levelHeight);
   }
 
   public GameState getGameState() {
@@ -37,7 +40,11 @@ public class Model extends Observable {
 
   public void update(long elapsedTime) {
     if(gameState != GameState.PAUSE) {
-      getPlayer().update(elapsedTime);
+      Player player = getPlayer();
+      player.update(elapsedTime);
+      if (player.getPositionX() >= getLevel().getWidth()) {
+        player.collide();
+      }
     }
     setChanged();
     notifyObservers();

@@ -3,6 +3,7 @@ package core;
 import objects.Player;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.awt.*;
@@ -11,6 +12,7 @@ import java.awt.event.KeyEvent;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
+@Ignore
 public class ControllerTest {
 
   private Model model;

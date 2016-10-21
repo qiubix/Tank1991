@@ -110,4 +110,17 @@ public class ModelTest {
 
     assertThat(model.getGameState(), equalTo(GameState.FINISHED));
   }
+
+  @Test
+  public void shouldStopPlayerWhenRightEdgeReached() {
+    int levelWidth = model.getLevel().getWidth();
+    Player player = model.getPlayer();
+    player.setVelocityX(1);
+    player.setPositionX(levelWidth - 10);
+    model.startGame();
+
+    model.update(10);
+
+    assertThat(player.getVelocityX(), equalTo(0f));
+  }
 }
