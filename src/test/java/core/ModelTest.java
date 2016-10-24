@@ -123,4 +123,41 @@ public class ModelTest {
 
     assertThat(player.getVelocityX(), equalTo(0f));
   }
+
+  @Test
+  public void shouldStopPlayerWhenLeftEdgeReached() {
+    Player player = model.getPlayer();
+    player.setVelocityX(-1);
+    player.setPositionX(10);
+    model.startGame();
+
+    model.update(10);
+
+    assertThat(player.getVelocityX(), equalTo(0f));
+  }
+
+  @Test
+  public void shouldStopPlayerWhenUpperEdgeReached() {
+    Player player = model.getPlayer();
+    player.setVelocityY(-1);
+    player.setPositionY(10);
+    model.startGame();
+
+    model.update(10);
+
+    assertThat(player.getVelocityY(), equalTo(0f));
+  }
+
+  @Test
+  public void shouldStopPlayerWhenLowerEdgeReached() {
+    int levelHeight = model.getLevel().getHeight();
+    Player player = model.getPlayer();
+    player.setVelocityY(1);
+    player.setPositionY(levelHeight - 10);
+    model.startGame();
+
+    model.update(10);
+
+    assertThat(player.getVelocityY(), equalTo(0f));
+  }
 }

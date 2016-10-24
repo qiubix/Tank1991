@@ -42,12 +42,19 @@ public class Model extends Observable {
     if(gameState != GameState.PAUSE) {
       Player player = getPlayer();
       player.update(elapsedTime);
-      if (player.getPositionX() >= getLevel().getWidth()) {
+      if (playerHitLevelEdge(player)) {
         player.collide();
       }
     }
     setChanged();
     notifyObservers();
+  }
+
+  private boolean playerHitLevelEdge(Player player) {
+    return player.getPositionX() >= getLevel().getWidth()
+        || player.getPositionX() <= 0
+        || player.getPositionY() >= getLevel().getHeight()
+        || player.getPositionY() <= 0;
   }
 
   public int getCurrentLevelNumber() {

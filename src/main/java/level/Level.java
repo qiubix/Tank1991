@@ -3,23 +3,14 @@ package level;
 import graphics.Drawable;
 import objects.Player;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.JPanel;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
-public class Level extends JPanel implements Drawable //implements Drawable
+public class Level extends JPanel implements Drawable
 {
 
   private Player player;
-
-  public Level() {
-    setDoubleBuffered(true);
-    player = (Player) Player.create();
-    player.setPositionX(20);
-    player.setPositionY(20);
-//    player.setVelocityX(1);
-  }
 
   public Level(int levelWidth, int levelHeight) {
     setDoubleBuffered(true);
@@ -49,9 +40,4 @@ public class Level extends JPanel implements Drawable //implements Drawable
     Graphics2D graphics2D = (Graphics2D) graphics;
     graphics2D.drawImage(player.getImage(), player.getPositionX(), player.getPositionY(), null);
   }
-
-//  @Override
-//  public void actionPerformed(ActionEvent e) {
-//    repaint();
-//  }
 }
