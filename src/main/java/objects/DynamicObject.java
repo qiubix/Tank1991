@@ -2,7 +2,7 @@ package objects;
 
 import java.awt.*;
 
-abstract class DynamicObject extends GameObject {
+public abstract class DynamicObject extends GameObject {
   protected float velocityX;
   protected float velocityY;
 
@@ -15,7 +15,7 @@ abstract class DynamicObject extends GameObject {
 
   protected DynamicObject(Image image) {
     super(image);
-    baseVelocity = 0.3f;
+    baseVelocity = 0.2f;
   }
 
   public float getVelocityX() {

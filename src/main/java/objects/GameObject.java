@@ -6,10 +6,15 @@ public abstract class GameObject {
   protected float positionX;
   protected float positionY;
 
+  protected int width;
+  protected int height;
+
   protected Image image;
 
   public GameObject(Image image) {
     this.image = image;
+    this.width = image.getWidth(null);
+    this.height = image.getHeight(null);
   }
 
   public int getPositionX() {
@@ -18,6 +23,22 @@ public abstract class GameObject {
 
   public int getPositionY() {
     return (int) positionY;
+  }
+
+  public void setPositionX(float positionX) {
+    this.positionX = positionX;
+  }
+
+  public void setPositionY(float positionY) {
+    this.positionY = positionY;
+  }
+
+  public int getWidth() {
+    return width;
+  }
+
+  public int getHeight() {
+    return height;
   }
 
   public Image getImage() {

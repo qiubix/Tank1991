@@ -1,6 +1,7 @@
 package core;
 
 import objects.Player;
+import objects.DynamicObject;
 import level.Level;
 
 import java.util.Observable;
@@ -41,20 +42,47 @@ public class Model extends Observable {
   public void update(long elapsedTime) {
     if(gameState != GameState.PAUSE) {
       Player player = getPlayer();
-      player.update(elapsedTime);
-      if (playerHitLevelEdge(player)) {
-        player.collide();
-      }
+      updateDynamicObject(player, elapsedTime);
     }
+
     setChanged();
     notifyObservers();
   }
 
-  private boolean playerHitLevelEdge(Player player) {
-    return player.getPositionX() >= getLevel().getWidth()
-        || player.getPositionX() <= 0
-        || player.getPositionY() >= getLevel().getHeight()
-        || player.getPositionY() <= 0;
+  private void updateDynamicObject(DynamicObject dynamicObject, long elapsedTime) {
+    float currentX = dynamicObject.getPositionX();
+    float nextX = currentX + elapsedTime * dynamicObject.getVelocityX();
+    if (isLeftEdgeReached(nextX) || isRightEdgeReached(nextX + dynamicObject.getWidth())) {
+      dynamicObject.collide();
+    }
+    else {
+      dynamicObject.setPositionX(nextX);
+    }
+
+    float currentY = dynamicObject.getPositionY();
+    float nextY = currentY + elapsedTime * dynamicObject.getVelocityY();
+    if (isTopEdgeReached(nextY) || isBottomEdgeReached(nextY + dynamicObject.getHeight())) {
+      dynamicObject.collide();
+    }
+    else {
+      dynamicObject.setPositionY(nextY);
+    }
+  }
+
+  private boolean isTopEdgeReached(float positionY) {
+    return positionY <= 0;
+  }
+
+  private boolean isBottomEdgeReached(float positionY) {
+    return positionY >= level.getHeight();
+  }
+
+  private boolean isLeftEdgeReached(float positionX) {
+    return positionX <= 0;
+  }
+
+  private boolean isRightEdgeReached(float positionX) {
+    return positionX >= level.getWidth();
   }
 
   public int getCurrentLevelNumber() {
