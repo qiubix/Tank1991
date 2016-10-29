@@ -26,5 +26,6 @@ public class ScreenManager {
   public void update() {
     BufferStrategy bufferStrategy = window.getBufferStrategy();
     bufferStrategy.show();
+    Toolkit.getDefaultToolkit().sync();
   }
 }

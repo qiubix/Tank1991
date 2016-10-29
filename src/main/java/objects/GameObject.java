@@ -3,21 +3,44 @@ package objects;
 import java.awt.*;
 
 public abstract class GameObject {
-  protected int positionX;
-  protected int positionY;
+  protected float positionX;
+  protected float positionY;
+
+  protected int width;
+  protected int height;
 
   protected Image image;
 
   public GameObject(Image image) {
     this.image = image;
+    if (image != null) {
+      this.width = image.getWidth(null);
+      this.height = image.getHeight(null);
+    }
   }
 
   public int getPositionX() {
-    return positionX;
+    return (int) positionX;
   }
 
   public int getPositionY() {
-    return positionY;
+    return (int) positionY;
+  }
+
+  public void setPositionX(float positionX) {
+    this.positionX = positionX;
+  }
+
+  public void setPositionY(float positionY) {
+    this.positionY = positionY;
+  }
+
+  public int getWidth() {
+    return width;
+  }
+
+  public int getHeight() {
+    return height;
   }
 
   public Image getImage() {

@@ -41,15 +41,11 @@ public class GameObjectFactoryTest {
     assertThat(player, notNullValue());
     assertThat(player.getPositionX(), equalTo(PLAYER_STARTING_POSITION_X));
     assertThat(player.getPositionY(), equalTo(PLAYER_STARTING_POSITION_Y));
-//    assertNotNull(player);
-//    assertEquals(PLAYER_STARTING_POSITION_X, player.getPositionX());
-//    assertEquals(PLAYER_STARTING_POSITION_Y, player.getPositionY());
   }
 
   @Test
   public void shouldCreateEnemy() throws Exception {
     Enemy enemy = factory.createEnemy();
-//    assertNotNull(enemy);
     assertThat(enemy, notNullValue());
     //TODO: test starting position
   }

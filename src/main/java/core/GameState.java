@@ -1,5 +1,5 @@
 package core;
 
 public enum GameState {
-  PAUSE, RUNNING
+  PAUSE, RUNNING, FINISHED
 }

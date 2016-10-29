@@ -1,22 +1,26 @@
 package core;
 
 import objects.Player;
+import objects.DynamicObject;
+import level.Level;
 
 import java.util.Observable;
 
 public class Model extends Observable {
   private GameState gameState;
-  private Player player;
   private int currentLevelNumber;
   private int playerPoints;
   private int enemiesToBeat;
   private int playerLifes;
 
+  private final int levelWidth = 1024;
+  private final int levelHeight = 748;
+
+  private Level level;
+
   public Model() {
     this.gameState = GameState.PAUSE;
-    this.player = (Player) Player.create();
-    this.player.setPositionX(20);
-    this.player.setPositionY(20);
+    this.level = new Level(levelWidth, levelHeight);
   }
 
   public GameState getGameState() {
@@ -32,15 +36,53 @@ public class Model extends Observable {
   }
 
   public Player getPlayer() {
-    return player;
+    return level.getPlayer();
   }
 
   public void update(long elapsedTime) {
     if(gameState != GameState.PAUSE) {
-      player.update(elapsedTime);
+      Player player = getPlayer();
+      updateDynamicObject(player, elapsedTime);
     }
+
     setChanged();
     notifyObservers();
+  }
+
+  private void updateDynamicObject(DynamicObject dynamicObject, long elapsedTime) {
+    float currentX = dynamicObject.getPositionX();
+    float nextX = currentX + elapsedTime * dynamicObject.getVelocityX();
+    if (isLeftEdgeReached(nextX) || isRightEdgeReached(nextX + dynamicObject.getWidth())) {
+      dynamicObject.collide();
+    }
+    else {
+      dynamicObject.setPositionX(nextX);
+    }
+
+    float currentY = dynamicObject.getPositionY();
+    float nextY = currentY + elapsedTime * dynamicObject.getVelocityY();
+    if (isTopEdgeReached(nextY) || isBottomEdgeReached(nextY + dynamicObject.getHeight())) {
+      dynamicObject.collide();
+    }
+    else {
+      dynamicObject.setPositionY(nextY);
+    }
+  }
+
+  private boolean isTopEdgeReached(float positionY) {
+    return positionY <= 0;
+  }
+
+  private boolean isBottomEdgeReached(float positionY) {
+    return positionY >= level.getHeight();
+  }
+
+  private boolean isLeftEdgeReached(float positionX) {
+    return positionX <= 0;
+  }
+
+  private boolean isRightEdgeReached(float positionX) {
+    return positionX >= level.getWidth();
   }
 
   public int getCurrentLevelNumber() {
@@ -65,5 +107,13 @@ public class Model extends Observable {
 
   public boolean isRunning() {
     return gameState.equals(GameState.RUNNING);
+  }
+
+  public void finishGame() {
+    gameState = GameState.FINISHED;
+  }
+
+  public Level getLevel() {
+    return level;
   }
 }
