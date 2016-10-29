@@ -12,7 +12,7 @@ public class Tank extends DynamicObject {
     super(image);
     baseVelocity = 0.5f;
     movementDirection = Direction.RIGHT;
-//    bullet = new Bullet(null);
+    bullet = new Bullet(null);
     shooting = false;
   }
 

@@ -13,8 +13,10 @@ public abstract class GameObject {
 
   public GameObject(Image image) {
     this.image = image;
-    this.width = image.getWidth(null);
-    this.height = image.getHeight(null);
+    if (image != null) {
+      this.width = image.getWidth(null);
+      this.height = image.getHeight(null);
+    }
   }
 
   public int getPositionX() {
